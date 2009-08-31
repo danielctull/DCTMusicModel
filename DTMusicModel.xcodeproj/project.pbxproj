@@ -10,6 +10,9 @@
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
+		24169429104C864A00EF0E71 /* DTLicenseAgreementView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24169425104C864A00EF0E71 /* DTLicenseAgreementView.xib */; };
+		2416942A104C864A00EF0E71 /* DTLicenseAgreementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24169427104C864A00EF0E71 /* DTLicenseAgreementViewController.m */; };
+		2416942B104C864A00EF0E71 /* license.html in Resources */ = {isa = PBXBuildFile; fileRef = 24169428104C864A00EF0E71 /* license.html */; };
 		2432820A104BD8270015874B /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24328209104BD8270015874B /* MediaPlayer.framework */; };
 		24845AAE104C7EE300489910 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 24845AAD104C7EE300489910 /* Icon.png */; };
 		24C28FFA104C774D004513D3 /* DTAlbum+Extras.m in Sources */ = {isa = PBXBuildFile; fileRef = 24C28FE0104C774D004513D3 /* DTAlbum+Extras.m */; };
@@ -42,6 +45,10 @@
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D6058910D05DD3D006BFB54 /* MusicModel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MusicModel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		24169425104C864A00EF0E71 /* DTLicenseAgreementView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DTLicenseAgreementView.xib; sourceTree = "<group>"; };
+		24169426104C864A00EF0E71 /* DTLicenseAgreementViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTLicenseAgreementViewController.h; sourceTree = "<group>"; };
+		24169427104C864A00EF0E71 /* DTLicenseAgreementViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTLicenseAgreementViewController.m; sourceTree = "<group>"; };
+		24169428104C864A00EF0E71 /* license.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = license.html; sourceTree = "<group>"; };
 		24328209104BD8270015874B /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		24845AAD104C7EE300489910 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		24C28FDF104C774D004513D3 /* DTAlbum+Extras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DTAlbum+Extras.h"; sourceTree = "<group>"; };
@@ -128,6 +135,17 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		24169424104C864A00EF0E71 /* License Agreement */ = {
+			isa = PBXGroup;
+			children = (
+				24169425104C864A00EF0E71 /* DTLicenseAgreementView.xib */,
+				24169426104C864A00EF0E71 /* DTLicenseAgreementViewController.h */,
+				24169427104C864A00EF0E71 /* DTLicenseAgreementViewController.m */,
+				24169428104C864A00EF0E71 /* license.html */,
+			);
+			path = "License Agreement";
+			sourceTree = "<group>";
+		};
 		24C28FDE104C774D004513D3 /* DTMusicModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -176,6 +194,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				24169424104C864A00EF0E71 /* License Agreement */,
 				24C28FDE104C774D004513D3 /* DTMusicModel */,
 				24E58ED1104BD87800A47A1E /* List View Controllers */,
 				080E96DDFE201D6D7F000001 /* Classes */,
@@ -266,6 +285,8 @@
 				24E58F07104BD89D00A47A1E /* MusicMenu.plist in Resources */,
 				24E8AE6A104BDDA8004AD907 /* DTUpdatingView.xib in Resources */,
 				24845AAE104C7EE300489910 /* Icon.png in Resources */,
+				24169429104C864A00EF0E71 /* DTLicenseAgreementView.xib in Resources */,
+				2416942B104C864A00EF0E71 /* license.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -296,6 +317,7 @@
 				24C29005104C774D004513D3 /* DTPlaylist.m in Sources */,
 				24C29006104C774D004513D3 /* DTSong+Extras.m in Sources */,
 				24C29007104C774D004513D3 /* DTSong.m in Sources */,
+				2416942A104C864A00EF0E71 /* DTLicenseAgreementViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

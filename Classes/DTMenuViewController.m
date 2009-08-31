@@ -7,6 +7,7 @@
 //
 
 #import "DTMenuViewController.h"
+#import "DTLicenseAgreementViewController.h"
 
 @implementation DTMenuViewController
 
@@ -29,11 +30,28 @@
 #pragma mark UITableViewDataSource/Delegate methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+    return 2;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+	if (section == 0)
+		return @"Legal Stuff";
+	else
+		return @"Music";
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section {
+	if (section == 0)
+		return nil;
+	else
+		return @"©2009 Daniel Tull danieltull.co.uk";
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [items count];
+	if (section == 0)
+		return 1;
+	else
+		return [items count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -45,12 +63,23 @@
 	if (cell == nil)
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
     
-    cell.textLabel.text = [items objectAtIndex:indexPath.row];
+	if (indexPath.section == 0)
+		cell.textLabel.text = @"License Agreement";
+	else
+		cell.textLabel.text = [items objectAtIndex:indexPath.row];
 	
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	
+	if (indexPath.section == 0) {
+		DTLicenseAgreementViewController *lvc = [[DTLicenseAgreementViewController alloc] init];
+		[self.navigationController pushViewController:lvc animated:YES];
+		[lvc release];
+		return;
+	}
+	
 	
 	//musicController
 	

@@ -11,13 +11,12 @@
 
 @implementation DTMenuViewController
 
-
 - (id)init{
     if (!(self = [super initWithStyle:UITableViewStylePlain])) return nil;
 	
 	items = [[NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"MusicMenu" ofType:@"plist"]] retain];
 	
-	self.title = @"DTMusicModel Demo";
+	self.title = @"DTMusicModel";
 	
     return self;
 }
@@ -34,6 +33,7 @@
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+	return nil;
 	if (section == 0)
 		return @"Legal Stuff";
 	else
@@ -41,7 +41,7 @@
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section {
-	if (section == 0)
+	if (section == 1)
 		return nil;
 	else
 		return @"©2009 Daniel Tull danieltull.co.uk";
@@ -80,10 +80,6 @@
 		return;
 	}
 	
-	
-	//musicController
-	
-//	DTArtistsViewController *avc = [[DTArtistsViewController alloc] initWithItems:];
 	
 }
 

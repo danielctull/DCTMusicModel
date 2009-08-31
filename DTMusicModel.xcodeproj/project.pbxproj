@@ -11,6 +11,7 @@
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		2432820A104BD8270015874B /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24328209104BD8270015874B /* MediaPlayer.framework */; };
+		24845AAE104C7EE300489910 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 24845AAD104C7EE300489910 /* Icon.png */; };
 		24C28FFA104C774D004513D3 /* DTAlbum+Extras.m in Sources */ = {isa = PBXBuildFile; fileRef = 24C28FE0104C774D004513D3 /* DTAlbum+Extras.m */; };
 		24C28FFB104C774D004513D3 /* DTAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = 24C28FE2104C774D004513D3 /* DTAlbum.m */; };
 		24C28FFC104C774D004513D3 /* DTArtist+Extras.m in Sources */ = {isa = PBXBuildFile; fileRef = 24C28FE4104C774D004513D3 /* DTArtist+Extras.m */; };
@@ -42,6 +43,7 @@
 		1D6058910D05DD3D006BFB54 /* MusicModel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MusicModel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		24328209104BD8270015874B /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		24845AAD104C7EE300489910 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		24C28FDF104C774D004513D3 /* DTAlbum+Extras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DTAlbum+Extras.h"; sourceTree = "<group>"; };
 		24C28FE0104C774D004513D3 /* DTAlbum+Extras.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DTAlbum+Extras.m"; sourceTree = "<group>"; };
 		24C28FE1104C774D004513D3 /* DTAlbum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTAlbum.h; sourceTree = "<group>"; };
@@ -197,6 +199,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				24845AAD104C7EE300489910 /* Icon.png */,
 				24E58F06104BD89D00A47A1E /* MusicMenu.plist */,
 				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
 				8D1107310486CEB800E47090 /* DTMusicModel-Info.plist */,
@@ -262,6 +265,7 @@
 				28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */,
 				24E58F07104BD89D00A47A1E /* MusicMenu.plist in Resources */,
 				24E8AE6A104BDDA8004AD907 /* DTUpdatingView.xib in Resources */,
+				24845AAE104C7EE300489910 /* Icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

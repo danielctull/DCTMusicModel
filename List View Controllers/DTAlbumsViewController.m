@@ -29,6 +29,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {	
 	DTAlbum *album = [items objectAtIndex:indexPath.row];
 	DTSongsViewController *svc = [[DTSongsViewController alloc] initWithItems:[[album.songs allObjects] sortedArrayUsingSelector:@selector(compareTrackNumber:)]];
+	svc.title = album.title;
 	[self.navigationController pushViewController:svc animated:YES];
 	[svc release];
 }

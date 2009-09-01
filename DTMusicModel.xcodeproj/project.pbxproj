@@ -39,6 +39,7 @@
 		24EA14D3104D125F001538CF /* DTAlbumsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24EA14D2104D125F001538CF /* DTAlbumsViewController.m */; };
 		24EA14DB104D1311001538CF /* DTSongsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24EA14DA104D1311001538CF /* DTSongsViewController.m */; };
 		24EA151C104D169D001538CF /* DTGenresViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24EA151B104D169D001538CF /* DTGenresViewController.m */; };
+		24EA1558104D2C2D001538CF /* DTPlaylistsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24EA1557104D2C2D001538CF /* DTPlaylistsViewController.m */; };
 		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
 		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
 		28D801B40F44B63D00FB423F /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28D801B30F44B63D00FB423F /* CoreData.framework */; };
@@ -99,6 +100,8 @@
 		24EA14DA104D1311001538CF /* DTSongsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTSongsViewController.m; sourceTree = "<group>"; };
 		24EA151A104D169D001538CF /* DTGenresViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTGenresViewController.h; sourceTree = "<group>"; };
 		24EA151B104D169D001538CF /* DTGenresViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTGenresViewController.m; sourceTree = "<group>"; };
+		24EA1556104D2C2D001538CF /* DTPlaylistsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTPlaylistsViewController.h; sourceTree = "<group>"; };
+		24EA1557104D2C2D001538CF /* DTPlaylistsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTPlaylistsViewController.m; sourceTree = "<group>"; };
 		288765A40DF7441C002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		28AD733E0D9D9553002E5188 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 		28D801B30F44B63D00FB423F /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -202,6 +205,8 @@
 				24EA14DA104D1311001538CF /* DTSongsViewController.m */,
 				24EA151A104D169D001538CF /* DTGenresViewController.h */,
 				24EA151B104D169D001538CF /* DTGenresViewController.m */,
+				24EA1556104D2C2D001538CF /* DTPlaylistsViewController.h */,
+				24EA1557104D2C2D001538CF /* DTPlaylistsViewController.m */,
 			);
 			path = "List View Controllers";
 			sourceTree = "<group>";
@@ -336,6 +341,7 @@
 				24EA14D3104D125F001538CF /* DTAlbumsViewController.m in Sources */,
 				24EA14DB104D1311001538CF /* DTSongsViewController.m in Sources */,
 				24EA151C104D169D001538CF /* DTGenresViewController.m in Sources */,
+				24EA1558104D2C2D001538CF /* DTPlaylistsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

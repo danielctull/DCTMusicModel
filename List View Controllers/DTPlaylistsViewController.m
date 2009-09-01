@@ -1,16 +1,16 @@
 //
-//  DTGenresViewController.m
+//  DTPlaylistsViewController.m
 //  DTMusicModel
 //
 //  Created by Daniel Tull on 01.09.2009.
 //  Copyright 2009 Daniel Tull. All rights reserved.
 //
 
-#import "DTGenresViewController.h"
-#import "DTGenre.h"
-#import "DTArtistsViewController.h"
+#import "DTPlaylistsViewController.h"
+#import "DTPlaylist.h"
+#import "DTSongsViewController.h"
 
-@implementation DTGenresViewController
+@implementation DTPlaylistsViewController
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
@@ -27,11 +27,11 @@
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {	
-	DTGenre *genre = [items objectAtIndex:indexPath.row];
-	DTArtistsViewController *avc = [[DTArtistsViewController alloc] initWithItems:[genre.artists allObjects]];
-	avc.title = genre.name;
-	[self.navigationController pushViewController:avc animated:YES];
-	[avc release];
+	DTPlaylist *playlist = [items objectAtIndex:indexPath.row];
+	DTSongsViewController *svc = [[DTSongsViewController alloc] initWithItems:[[playlist.songs allObjects] sortedArrayUsingSelector:@selector(compare:)]];
+	svc.title = playlist.name;
+	[self.navigationController pushViewController:svc animated:YES];
+	[svc release];
 }
 
 @end

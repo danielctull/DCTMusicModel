@@ -12,6 +12,7 @@
 #import "DTAlbumsViewController.h"
 #import "DTSongsViewController.h"
 #import "DTGenresViewController.h"
+#import "DTPlaylistsViewController.h"
 
 @implementation DTMenuViewController
 
@@ -82,32 +83,32 @@
 	
 	NSString *cellTitle = [tableView cellForRowAtIndexPath:indexPath].textLabel.text;
 	
+	UIViewController *vc = nil;
+	
 	if (indexPath.section == 0) {
-		DTLicenseAgreementViewController *lvc = [[DTLicenseAgreementViewController alloc] init];
-		[self.navigationController pushViewController:lvc animated:YES];
-		[lvc release];
+		vc = [[DTLicenseAgreementViewController alloc] init];
+		[self.navigationController pushViewController:vc animated:YES];
+		[vc release];
 		return;
 	} else if ([cellTitle isEqualToString:@"Artists"]) {
-		DTArtistsViewController *avc = [[DTArtistsViewController alloc] initWithItems:[musicModelController allArtists]];
-		[self.navigationController pushViewController:avc animated:YES];
-		[avc release];
+		vc = [[DTArtistsViewController alloc] initWithItems:[musicModelController allArtists]];
 	} else if ([cellTitle isEqualToString:@"Albums"]) {
-		DTAlbumsViewController *avc = [[DTAlbumsViewController alloc] initWithItems:[musicModelController allAlbums]];
-		[self.navigationController pushViewController:avc animated:YES];
-		[avc release];
+		vc = [[DTAlbumsViewController alloc] initWithItems:[musicModelController allAlbums]];
 	} else if ([cellTitle isEqualToString:@"Playlists"]) {
-		DTArtistsViewController *avc = [[DTArtistsViewController alloc] initWithItems:[musicModelController allArtists]];
-		[self.navigationController pushViewController:avc animated:YES];
-		[avc release];
+		vc = [[DTPlaylistsViewController alloc] initWithItems:[musicModelController allPlaylists]];
 	} else if ([cellTitle isEqualToString:@"Genres"]) {
-		DTGenresViewController *gvc = [[DTGenresViewController alloc] initWithItems:[musicModelController allArtists]];
-		[self.navigationController pushViewController:gvc animated:YES];
-		[gvc release];
+		vc = [[DTGenresViewController alloc] initWithItems:[musicModelController allGenres]];
 	} else if ([cellTitle isEqualToString:@"Songs"]) {
-		DTSongsViewController *svc = [[DTSongsViewController alloc] initWithItems:[musicModelController allSongs]];
-		[self.navigationController pushViewController:svc animated:YES];
-		[svc release];
+		vc = [[DTSongsViewController alloc] initWithItems:[musicModelController allSongs]];
+	} else if ([cellTitle isEqualToString:@"Composers"]) {
+		vc = [[DTSongsViewController alloc] initWithItems:[musicModelController allComposers]];
+	} else {
+		return;
 	}
+	
+	vc.title = cellTitle;
+	[self.navigationController pushViewController:vc animated:YES];
+	[vc release];
 	
 	
 }

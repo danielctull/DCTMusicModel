@@ -55,9 +55,11 @@ NSString *DTMusicModelUpdatingProgressPercentageKey = @"DTMusicModelUpdatingProg
 
 - (id)init {
 	
+	
 	if (!(self = [super init]))
 		return nil;
-		
+	
+	
 	NSEntityDescription *entity = [NSEntityDescription entityForName:DTDataInformationString inManagedObjectContext:self.managedObjectContext];
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
 	[request setEntity:entity];	
@@ -70,27 +72,27 @@ NSString *DTMusicModelUpdatingProgressPercentageKey = @"DTMusicModelUpdatingProg
 	}
 	
 	if ([fetchResult count] == 0) {
+		NSLog(@"%@:%s", self, _cmd);
 		[self setupMusicData];
-	} else {
-		fetchResult = [self.managedObjectContext executeFetchRequest:request error:&error];
-		[request release];
-		if ([fetchResult count] == 0) {
-			return nil;
-		}
-		DTDataInformation *dataInfo = [fetchResult objectAtIndex:0];
+	}
+	
+	fetchResult = [self.managedObjectContext executeFetchRequest:request error:&error];
+	[request release];
+	/*if ([fetchResult count] == 0) {
+		return nil;
+	}*/
+	DTDataInformation *dataInfo = [fetchResult objectAtIndex:0];
 		
 #ifndef __IPHONE_3_1
 #warning lastModifiedDate is broken on iPhone OS version 3.0, this will cause the data store to update ever launch of the application.
 #endif	
-		NSDate *libraryLastModified = [[MPMediaLibrary defaultMediaLibrary] lastModifiedDate];
+	NSDate *libraryLastModified = [[MPMediaLibrary defaultMediaLibrary] lastModifiedDate];
+	NSDate *dataLastUpdated = dataInfo.lastUpdated;
 		
-		NSDate *dataLastUpdated = dataInfo.lastUpdated;
+	NSLog(@"%@:%s library:%@ coredata:%@", self, _cmd, libraryLastModified, dataLastUpdated);
 		
-		NSLog(@"%@:%s library:%@ coredata:%@", self, _cmd, libraryLastModified, dataLastUpdated);
-		
-		if ([libraryLastModified compare:dataLastUpdated] == NSOrderedDescending)
-			[self setupMusicData];
-	}
+	if ([libraryLastModified compare:dataLastUpdated] == NSOrderedDescending)
+		[self setupMusicData];
 	
 	return self;
 }
@@ -212,9 +214,9 @@ NSString *DTMusicModelUpdatingProgressPercentageKey = @"DTMusicModelUpdatingProg
 	[progressDictionary setObject:[NSNumber numberWithInt:0] forKey:DTMusicModelAmountOfTracksFinishedProcessingKey];
 	[progressDictionary setObject:[NSNumber numberWithInt:0] forKey:DTMusicModelAmountOfPlaylistsFinishedProcessingKey];
 	
-	//[[NSNotificationCenter defaultCenter] postNotificationName:DTMusicModelDidBeginUpdatingNotification object:self userInfo:progressDictionary];
+	[[NSNotificationCenter defaultCenter] postNotificationName:DTMusicModelDidBeginUpdatingNotification object:self userInfo:progressDictionary];
 	
-	[self performSelectorOnMainThread:@selector(sendDTMusicModelDidBeginUpdatingNotificationWithUserInfo:) withObject:progressDictionary waitUntilDone:YES];
+	//[self performSelectorOnMainThread:@selector(sendDTMusicModelDidBeginUpdatingNotificationWithUserInfo:) withObject:progressDictionary waitUntilDone:YES];
 	
 	NSMutableDictionary *artistsDictionary = [[NSMutableDictionary alloc] init];
 	NSMutableDictionary *composersDictionary = [[NSMutableDictionary alloc] init];
@@ -297,8 +299,8 @@ NSString *DTMusicModelUpdatingProgressPercentageKey = @"DTMusicModelUpdatingProg
 		
 		if (workDone >= percentageDone) {
 			[progressDictionary setObject:[NSNumber numberWithInt:percentageDone] forKey:DTMusicModelUpdatingProgressPercentageKey];
-			//[[NSNotificationCenter defaultCenter] postNotificationName:DTMusicModelUpdatingProgressNotification object:self userInfo:progressDictionary];
-			[self performSelectorOnMainThread:@selector(sendDTMusicModelUpdatingProgressNotificationWithUserInfo:) withObject:progressDictionary waitUntilDone:YES];
+			[[NSNotificationCenter defaultCenter] postNotificationName:DTMusicModelUpdatingProgressNotification object:self userInfo:progressDictionary];
+			//[self performSelectorOnMainThread:@selector(sendDTMusicModelUpdatingProgressNotificationWithUserInfo:) withObject:progressDictionary waitUntilDone:YES];
 			percentageDone++;
 		}
 	}

@@ -35,10 +35,12 @@
 	if ([albums count] == 1) {
 		DTAlbum *album = [albums objectAtIndex:0];
 		DTSongsViewController *svc = [[DTSongsViewController alloc] initWithItems:[[album.songs allObjects] sortedArrayUsingSelector:@selector(compareTrackNumber:)]];
+		svc.title = album.title;
 		[self.navigationController pushViewController:svc animated:YES];
 		[svc release];
 	} else {
 		DTAlbumsViewController *alvc = [[DTAlbumsViewController alloc] initWithItems:[albums sortedArrayUsingSelector:@selector(compare:)]];
+		alvc.title = artist.name;
 		[self.navigationController pushViewController:alvc animated:YES];
 		[alvc release];
 	}

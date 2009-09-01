@@ -59,12 +59,12 @@ NSString *DTMusicModelUpdatingProgressPercentageKey = @"DTMusicModelUpdatingProg
 	if (!(self = [super init]))
 		return nil;
 	
-	
 	NSEntityDescription *entity = [NSEntityDescription entityForName:DTDataInformationString inManagedObjectContext:self.managedObjectContext];
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
 	[request setEntity:entity];	
 	NSError *error = nil;
 	NSArray *fetchResult = [self.managedObjectContext executeFetchRequest:request error:&error];
+	[request release];
 	
 	if (error) {
 		NSLog(@"%@ Fetch Error", self);
@@ -73,14 +73,10 @@ NSString *DTMusicModelUpdatingProgressPercentageKey = @"DTMusicModelUpdatingProg
 	
 	if ([fetchResult count] == 0) {
 		NSLog(@"%@:%s", self, _cmd);
-		[self setupMusicData];
+		[NSThread detachNewThreadSelector:@selector(setupMusicData) toTarget:self withObject:nil];
+		return self;
 	}
 	
-	fetchResult = [self.managedObjectContext executeFetchRequest:request error:&error];
-	[request release];
-	/*if ([fetchResult count] == 0) {
-		return nil;
-	}*/
 	DTDataInformation *dataInfo = [fetchResult objectAtIndex:0];
 		
 #ifndef __IPHONE_3_1
@@ -92,7 +88,7 @@ NSString *DTMusicModelUpdatingProgressPercentageKey = @"DTMusicModelUpdatingProg
 	NSLog(@"%@:%s library:%@ coredata:%@", self, _cmd, libraryLastModified, dataLastUpdated);
 		
 	if ([libraryLastModified compare:dataLastUpdated] == NSOrderedDescending)
-		[self setupMusicData];
+		[NSThread detachNewThreadSelector:@selector(setupMusicData) toTarget:self withObject:nil];
 	
 	return self;
 }
@@ -185,6 +181,10 @@ NSString *DTMusicModelUpdatingProgressPercentageKey = @"DTMusicModelUpdatingProg
 
 - (void)setupMusicData {
 	
+	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+	
+	//[[NSNotificationCenter defaultCenter] postNotificationName:DTMusicModelWillBeginUpdatingNotification object:self userInfo:nil];
+	
 	[self performSelectorOnMainThread:@selector(sendDTMusicModelWillBeginUpdatingNotification) withObject:nil waitUntilDone:YES];
 	
 	self.isSettingUp = YES;
@@ -214,9 +214,9 @@ NSString *DTMusicModelUpdatingProgressPercentageKey = @"DTMusicModelUpdatingProg
 	[progressDictionary setObject:[NSNumber numberWithInt:0] forKey:DTMusicModelAmountOfTracksFinishedProcessingKey];
 	[progressDictionary setObject:[NSNumber numberWithInt:0] forKey:DTMusicModelAmountOfPlaylistsFinishedProcessingKey];
 	
-	[[NSNotificationCenter defaultCenter] postNotificationName:DTMusicModelDidBeginUpdatingNotification object:self userInfo:progressDictionary];
+	//[[NSNotificationCenter defaultCenter] postNotificationName:DTMusicModelDidBeginUpdatingNotification object:self userInfo:progressDictionary];
 	
-	//[self performSelectorOnMainThread:@selector(sendDTMusicModelDidBeginUpdatingNotificationWithUserInfo:) withObject:progressDictionary waitUntilDone:YES];
+	[self performSelectorOnMainThread:@selector(sendDTMusicModelDidBeginUpdatingNotificationWithUserInfo:) withObject:progressDictionary waitUntilDone:YES];
 	
 	NSMutableDictionary *artistsDictionary = [[NSMutableDictionary alloc] init];
 	NSMutableDictionary *composersDictionary = [[NSMutableDictionary alloc] init];
@@ -299,8 +299,8 @@ NSString *DTMusicModelUpdatingProgressPercentageKey = @"DTMusicModelUpdatingProg
 		
 		if (workDone >= percentageDone) {
 			[progressDictionary setObject:[NSNumber numberWithInt:percentageDone] forKey:DTMusicModelUpdatingProgressPercentageKey];
-			[[NSNotificationCenter defaultCenter] postNotificationName:DTMusicModelUpdatingProgressNotification object:self userInfo:progressDictionary];
-			//[self performSelectorOnMainThread:@selector(sendDTMusicModelUpdatingProgressNotificationWithUserInfo:) withObject:progressDictionary waitUntilDone:YES];
+			//[[NSNotificationCenter defaultCenter] postNotificationName:DTMusicModelUpdatingProgressNotification object:self userInfo:progressDictionary];
+			[self performSelectorOnMainThread:@selector(sendDTMusicModelUpdatingProgressNotificationWithUserInfo:) withObject:progressDictionary waitUntilDone:YES];
 			percentageDone++;
 		}
 	}
@@ -347,6 +347,8 @@ NSString *DTMusicModelUpdatingProgressPercentageKey = @"DTMusicModelUpdatingProg
 	[self performSelectorOnMainThread:@selector(sendDTMusicModelDidEndUpdatingNotificationWithUserInfo:) withObject:progressDictionary waitUntilDone:YES];
 	
 	[progressDictionary release];
+	
+	[pool release];
 }
 
 #pragma mark -

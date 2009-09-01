@@ -29,17 +29,7 @@
 	[window addSubview:navController.view];
 	
     [window makeKeyAndVisible];
-	
-	[NSThread detachNewThreadSelector:@selector(createMusicModel) toTarget:self withObject:nil];
 }
-
-- (void)createMusicModel {
-	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-	DTMusicModelController *musicController = [[DTMusicModelController alloc] init];
-	[musicController release];
-	[pool release];
-}
-
 
 - (void)dealloc {
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
@@ -50,15 +40,10 @@
 #pragma mark DTMusicModelController Notifications
 
 - (void)musicModelWillBeginUpdating:(NSNotification *)notification {	
-	[self performSelectorOnMainThread:@selector(pushUVC) withObject:nil waitUntilDone:YES];
-}
-
-- (void)pushUVC {
 	DTUpdatingViewController *uvc = [[DTUpdatingViewController alloc] init];
 	uvc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
 	[navController presentModalViewController:uvc animated:YES];
 	[uvc release];
 }
-
 
 @end

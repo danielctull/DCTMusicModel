@@ -69,29 +69,28 @@ NSString *DTMusicModelUpdatingProgressPercentageKey = @"DTMusicModelUpdatingProg
 		return nil;
 	}
 	
-	if ([fetchResult count] == 0)
-		[self setupMusicData];
-	
-	fetchResult = [self.managedObjectContext executeFetchRequest:request error:&error];
-	[request release];
 	if ([fetchResult count] == 0) {
-		return nil;
-	}
-	DTDataInformation *dataInfo = [fetchResult objectAtIndex:0];
-	
+		[self setupMusicData];
+	} else {
+		fetchResult = [self.managedObjectContext executeFetchRequest:request error:&error];
+		[request release];
+		if ([fetchResult count] == 0) {
+			return nil;
+		}
+		DTDataInformation *dataInfo = [fetchResult objectAtIndex:0];
+		
 #ifndef __IPHONE_3_1
 #warning lastModifiedDate is broken on iPhone OS version 3.0, this will cause the data store to update ever launch of the application.
 #endif	
-	NSDate *libraryLastModified = [[MPMediaLibrary defaultMediaLibrary] lastModifiedDate];
-	
-	
-	
-	NSDate *dataLastUpdated = dataInfo.lastUpdated;
-	
-	NSLog(@"%@:%s library:%@ coredata:%@", self, _cmd, libraryLastModified, dataLastUpdated);
-	
-	if ([libraryLastModified compare:dataLastUpdated] == NSOrderedDescending)
-		[self setupMusicData];
+		NSDate *libraryLastModified = [[MPMediaLibrary defaultMediaLibrary] lastModifiedDate];
+		
+		NSDate *dataLastUpdated = dataInfo.lastUpdated;
+		
+		NSLog(@"%@:%s library:%@ coredata:%@", self, _cmd, libraryLastModified, dataLastUpdated);
+		
+		if ([libraryLastModified compare:dataLastUpdated] == NSOrderedDescending)
+			[self setupMusicData];
+	}
 	
 	return self;
 }
@@ -107,26 +106,41 @@ NSString *DTMusicModelUpdatingProgressPercentageKey = @"DTMusicModelUpdatingProg
 #pragma mark Specific Item Retrieval
 
 - (DTAlbum *)albumWithTitle:(NSString *)albumTitle artist:(DTArtist *)artist {
+	
+	if (self.isSettingUp) return nil;
+		
 	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"title == %@ AND artist == %@", albumTitle, artist];
 	return (DTAlbum *)[self managedObjectOfType:DTAlbumString withPredicate:predicate];
 }
 
 - (DTGenre *)genreNamed:(NSString *)genreName {
+	
+	if (self.isSettingUp) return nil;
+	
 	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name == %@", genreName];
 	return (DTGenre *)[self managedObjectOfType:DTGenreString withPredicate:predicate];	
 }
 
 - (DTArtist *)artistNamed:(NSString *)artistName {
+	
+	if (self.isSettingUp) return nil;
+	
 	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name == %@", artistName];
 	return (DTArtist *)[self managedObjectOfType:DTArtistString withPredicate:predicate];
 }
 
 - (DTComposer *)composerNamed:(NSString *)composerName {
+	
+	if (self.isSettingUp) return nil;
+	
 	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name == %@", composerName];
 	return (DTComposer *)[self managedObjectOfType:DTComposerString withPredicate:predicate];
 }
 
 - (DTSong *)songWithIdentifier:(NSNumber *)identifier {
+
+	if (self.isSettingUp) return nil;	
+	
 	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"identifier == %@", identifier];
 	return (DTSong *)[self managedObjectOfType:DTSongString withPredicate:predicate];
 }
@@ -135,26 +149,32 @@ NSString *DTMusicModelUpdatingProgressPercentageKey = @"DTMusicModelUpdatingProg
 #pragma mark Collection Retrieval
 
 - (NSArray *)allSongs {
+	if (self.isSettingUp) return nil;
 	return [self fetchAllEntitiesForName:DTSongString sortDescriptors:[self sortDescriptorArrayWithDescriptorWithKey:@"title"] batchSize:6];
 }
 
 - (NSArray *)allArtists {
+	if (self.isSettingUp) return nil;
 	return [self fetchAllEntitiesForName:DTArtistString sortDescriptors:[self sortDescriptorArrayWithDescriptorWithKey:@"name"] batchSize:6];
 }
 
 - (NSArray *)allAlbums {
+	if (self.isSettingUp) return nil;
 	return [self fetchAllEntitiesForName:DTAlbumString sortDescriptors:[self sortDescriptorArrayWithDescriptorWithKey:@"title"] batchSize:6];
 }
 
 - (NSArray *)allComposers {
+	if (self.isSettingUp) return nil;
 	return [self fetchAllEntitiesForName:DTComposerString sortDescriptors:[self sortDescriptorArrayWithDescriptorWithKey:@"name"] batchSize:6];
 }
 
 - (NSArray *)allGenres {
+	if (self.isSettingUp) return nil;
 	return [self fetchAllEntitiesForName:DTGenreString sortDescriptors:[self sortDescriptorArrayWithDescriptorWithKey:@"name"] batchSize:6];
 }
 
 - (NSArray *)allPlaylists {
+	if (self.isSettingUp) return nil;
 	return [self fetchAllEntitiesForName:DTPlaylistString sortDescriptors:[self sortDescriptorArrayWithDescriptorWithKey:@"name"] batchSize:6];
 }
 
@@ -162,7 +182,8 @@ NSString *DTMusicModelUpdatingProgressPercentageKey = @"DTMusicModelUpdatingProg
 #pragma mark Private
 
 - (void)setupMusicData {
-	[[NSNotificationCenter defaultCenter] postNotificationName:DTMusicModelWillBeginUpdatingNotification object:self];
+	
+	[self performSelectorOnMainThread:@selector(sendDTMusicModelWillBeginUpdatingNotification) withObject:nil waitUntilDone:YES];
 	
 	self.isSettingUp = YES;
 	
@@ -191,7 +212,9 @@ NSString *DTMusicModelUpdatingProgressPercentageKey = @"DTMusicModelUpdatingProg
 	[progressDictionary setObject:[NSNumber numberWithInt:0] forKey:DTMusicModelAmountOfTracksFinishedProcessingKey];
 	[progressDictionary setObject:[NSNumber numberWithInt:0] forKey:DTMusicModelAmountOfPlaylistsFinishedProcessingKey];
 	
-	[[NSNotificationCenter defaultCenter] postNotificationName:DTMusicModelDidBeginUpdatingNotification object:self userInfo:progressDictionary];
+	//[[NSNotificationCenter defaultCenter] postNotificationName:DTMusicModelDidBeginUpdatingNotification object:self userInfo:progressDictionary];
+	
+	[self performSelectorOnMainThread:@selector(sendDTMusicModelDidBeginUpdatingNotificationWithUserInfo:) withObject:progressDictionary waitUntilDone:YES];
 	
 	NSMutableDictionary *artistsDictionary = [[NSMutableDictionary alloc] init];
 	NSMutableDictionary *composersDictionary = [[NSMutableDictionary alloc] init];
@@ -201,16 +224,12 @@ NSString *DTMusicModelUpdatingProgressPercentageKey = @"DTMusicModelUpdatingProg
 	
 	
 	float totalWork = ([items count] + [mediaPlaylists count]);
-	
-	NSLog(@"%@:%s total work:%f", self, _cmd, totalWork);
-	
+		
 	float pieceOfWork = 100.0 / totalWork;
 	
 	float workDone = 0.0;
 	
 	NSInteger percentageDone = 0;
-	
-	NSLog(@"%@:%s pieceOfWork:%f", self, _cmd, pieceOfWork);
 	
 	for (MPMediaItem *item in items) {
 		
@@ -276,20 +295,12 @@ NSString *DTMusicModelUpdatingProgressPercentageKey = @"DTMusicModelUpdatingProg
 		
 		workDone = workDone + pieceOfWork;
 		
-		//NSLog(@"%@:%s workDone: %f", self, _cmd, workDone);
-		
 		if (workDone >= percentageDone) {
-			//NSLog(@"%@:%s %i", self, _cmd, percentageDone);
 			[progressDictionary setObject:[NSNumber numberWithInt:percentageDone] forKey:DTMusicModelUpdatingProgressPercentageKey];
-			[[NSNotificationCenter defaultCenter] postNotificationName:DTMusicModelUpdatingProgressNotification object:self userInfo:progressDictionary];
+			//[[NSNotificationCenter defaultCenter] postNotificationName:DTMusicModelUpdatingProgressNotification object:self userInfo:progressDictionary];
+			[self performSelectorOnMainThread:@selector(sendDTMusicModelUpdatingProgressNotificationWithUserInfo:) withObject:progressDictionary waitUntilDone:YES];
 			percentageDone++;
 		}
-		
-		/*NSError *serror = nil;
-		[self.managedObjectContext save:&serror];
-		
-		if (serror)
-			NSLog(@"%@:%s Saving error: %@: %@", self, _cmd, serror, [serror userInfo]);*/
 	}
 	
 	progressAmount = 0;
@@ -330,9 +341,29 @@ NSString *DTMusicModelUpdatingProgressPercentageKey = @"DTMusicModelUpdatingProg
 	if (error)
 		NSLog(@"%@:%s Saving error: %@ : %@", self, _cmd, error, [error userInfo]);
 	
-	[[NSNotificationCenter defaultCenter] postNotificationName:DTMusicModelDidEndUpdatingNotification object:self userInfo:progressDictionary];
+	//[[NSNotificationCenter defaultCenter] postNotificationName:DTMusicModelDidEndUpdatingNotification object:self userInfo:progressDictionary];
+	[self performSelectorOnMainThread:@selector(sendDTMusicModelDidEndUpdatingNotificationWithUserInfo:) withObject:progressDictionary waitUntilDone:YES];
 	
 	[progressDictionary release];
+}
+
+#pragma mark -
+#pragma mark Notification Deliverers
+
+- (void)sendDTMusicModelWillBeginUpdatingNotification {
+	[[NSNotificationCenter defaultCenter] postNotificationName:DTMusicModelWillBeginUpdatingNotification object:self];
+}
+
+- (void)sendDTMusicModelDidEndUpdatingNotificationWithUserInfo:(NSDictionary *)userInfo {
+	[[NSNotificationCenter defaultCenter] postNotificationName:DTMusicModelDidEndUpdatingNotification object:self userInfo:userInfo];
+}
+
+- (void)sendDTMusicModelUpdatingProgressNotificationWithUserInfo:(NSDictionary *)userInfo {
+	[[NSNotificationCenter defaultCenter] postNotificationName:DTMusicModelUpdatingProgressNotification object:self userInfo:userInfo];
+}
+
+- (void)sendDTMusicModelDidBeginUpdatingNotificationWithUserInfo:(NSDictionary *)userInfo {
+	[[NSNotificationCenter defaultCenter] postNotificationName:DTMusicModelDidBeginUpdatingNotification object:self userInfo:userInfo];
 }
 
 #pragma mark -

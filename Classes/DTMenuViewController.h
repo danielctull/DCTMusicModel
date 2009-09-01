@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DTMusicModelController.h"
 
 @interface DTMenuViewController : UITableViewController {
 	NSArray *items;
+	DTMusicModelController *musicModelController;
 }
 
 @end

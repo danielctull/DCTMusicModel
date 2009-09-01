@@ -8,6 +8,10 @@
 
 #import "DTMenuViewController.h"
 #import "DTLicenseAgreementViewController.h"
+#import "DTArtistsViewController.h"
+#import "DTAlbumsViewController.h"
+#import "DTSongsViewController.h"
+#import "DTGenresViewController.h"
 
 @implementation DTMenuViewController
 
@@ -16,12 +20,15 @@
 	
 	items = [[NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"MusicMenu" ofType:@"plist"]] retain];
 	
+	musicModelController = [[DTMusicModelController alloc] init];
+	
 	self.title = @"DTMusicModel";
 	
     return self;
 }
 
 - (void)dealloc {
+	[musicModelController release];
 	[items release];
     [super dealloc];
 }
@@ -73,11 +80,33 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	
+	NSString *cellTitle = [tableView cellForRowAtIndexPath:indexPath].textLabel.text;
+	
 	if (indexPath.section == 0) {
 		DTLicenseAgreementViewController *lvc = [[DTLicenseAgreementViewController alloc] init];
 		[self.navigationController pushViewController:lvc animated:YES];
 		[lvc release];
 		return;
+	} else if ([cellTitle isEqualToString:@"Artists"]) {
+		DTArtistsViewController *avc = [[DTArtistsViewController alloc] initWithItems:[musicModelController allArtists]];
+		[self.navigationController pushViewController:avc animated:YES];
+		[avc release];
+	} else if ([cellTitle isEqualToString:@"Albums"]) {
+		DTAlbumsViewController *avc = [[DTAlbumsViewController alloc] initWithItems:[musicModelController allAlbums]];
+		[self.navigationController pushViewController:avc animated:YES];
+		[avc release];
+	} else if ([cellTitle isEqualToString:@"Playlists"]) {
+		DTArtistsViewController *avc = [[DTArtistsViewController alloc] initWithItems:[musicModelController allArtists]];
+		[self.navigationController pushViewController:avc animated:YES];
+		[avc release];
+	} else if ([cellTitle isEqualToString:@"Genres"]) {
+		DTGenresViewController *gvc = [[DTGenresViewController alloc] initWithItems:[musicModelController allArtists]];
+		[self.navigationController pushViewController:gvc animated:YES];
+		[gvc release];
+	} else if ([cellTitle isEqualToString:@"Songs"]) {
+		DTSongsViewController *svc = [[DTSongsViewController alloc] initWithItems:[musicModelController allSongs]];
+		[self.navigationController pushViewController:svc animated:YES];
+		[svc release];
 	}
 	
 	

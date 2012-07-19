@@ -5,37 +5,17 @@
 
 
 extern const struct DCTPlaylistAttributes {
-	__unsafe_unretained NSString *discNumber;
-	__unsafe_unretained NSString *duration;
-	__unsafe_unretained NSString *identifier;
-	__unsafe_unretained NSString *lyrics;
-	__unsafe_unretained NSString *rating;
-	__unsafe_unretained NSString *title;
-	__unsafe_unretained NSString *trackNumber;
+	__unsafe_unretained NSString *name;
 } DCTPlaylistAttributes;
 
 extern const struct DCTPlaylistRelationships {
-	__unsafe_unretained NSString *album;
-	__unsafe_unretained NSString *artist;
-	__unsafe_unretained NSString *composer;
-	__unsafe_unretained NSString *genre;
-	__unsafe_unretained NSString *playlists;
+	__unsafe_unretained NSString *songs;
 } DCTPlaylistRelationships;
 
 extern const struct DCTPlaylistFetchedProperties {
 } DCTPlaylistFetchedProperties;
 
-@class DCTAlbum;
-@class DCTArtist;
-@class DCTComposer;
-@class DCTGenre;
-@class DCTPlaylist;
-
-
-
-
-
-
+@class DCTSong;
 
 
 
@@ -51,114 +31,18 @@ extern const struct DCTPlaylistFetchedProperties {
 
 
 
-@property (nonatomic, strong) NSNumber* discNumber;
+@property (nonatomic, strong) NSString* name;
 
 
-@property int16_t discNumberValue;
-- (int16_t)discNumberValue;
-- (void)setDiscNumberValue:(int16_t)value_;
+//- (BOOL)validateName:(id*)value_ error:(NSError**)error_;
 
-//- (BOOL)validateDiscNumber:(id*)value_ error:(NSError**)error_;
 
 
 
 
-@property (nonatomic, strong) NSNumber* duration;
+@property (nonatomic, strong) NSSet* songs;
 
-
-@property float durationValue;
-- (float)durationValue;
-- (void)setDurationValue:(float)value_;
-
-//- (BOOL)validateDuration:(id*)value_ error:(NSError**)error_;
-
-
-
-
-@property (nonatomic, strong) NSNumber* identifier;
-
-
-@property int64_t identifierValue;
-- (int64_t)identifierValue;
-- (void)setIdentifierValue:(int64_t)value_;
-
-//- (BOOL)validateIdentifier:(id*)value_ error:(NSError**)error_;
-
-
-
-
-@property (nonatomic, strong) NSString* lyrics;
-
-
-//- (BOOL)validateLyrics:(id*)value_ error:(NSError**)error_;
-
-
-
-
-@property (nonatomic, strong) NSNumber* rating;
-
-
-@property int16_t ratingValue;
-- (int16_t)ratingValue;
-- (void)setRatingValue:(int16_t)value_;
-
-//- (BOOL)validateRating:(id*)value_ error:(NSError**)error_;
-
-
-
-
-@property (nonatomic, strong) NSString* title;
-
-
-//- (BOOL)validateTitle:(id*)value_ error:(NSError**)error_;
-
-
-
-
-@property (nonatomic, strong) NSNumber* trackNumber;
-
-
-@property int16_t trackNumberValue;
-- (int16_t)trackNumberValue;
-- (void)setTrackNumberValue:(int16_t)value_;
-
-//- (BOOL)validateTrackNumber:(id*)value_ error:(NSError**)error_;
-
-
-
-
-
-@property (nonatomic, strong) DCTAlbum* album;
-
-//- (BOOL)validateAlbum:(id*)value_ error:(NSError**)error_;
-
-
-
-
-@property (nonatomic, strong) DCTArtist* artist;
-
-//- (BOOL)validateArtist:(id*)value_ error:(NSError**)error_;
-
-
-
-
-@property (nonatomic, strong) DCTComposer* composer;
-
-//- (BOOL)validateComposer:(id*)value_ error:(NSError**)error_;
-
-
-
-
-@property (nonatomic, strong) DCTGenre* genre;
-
-//- (BOOL)validateGenre:(id*)value_ error:(NSError**)error_;
-
-
-
-
-@property (nonatomic, strong) NSSet* playlists;
-
-- (NSMutableSet*)playlistsSet;
+- (NSMutableSet*)songsSet;
 
 
 
@@ -167,15 +51,7 @@ extern const struct DCTPlaylistFetchedProperties {
 #if TARGET_OS_IPHONE
 
 
-
-
-
-
-
-
-
-
-- (NSFetchedResultsController *)newPlaylistsFetchedResultsControllerWithSortDescriptors:(NSArray *)sortDescriptors;
+- (NSFetchedResultsController *)newSongsFetchedResultsControllerWithSortDescriptors:(NSArray *)sortDescriptors;
 
 
 #endif
@@ -184,96 +60,25 @@ extern const struct DCTPlaylistFetchedProperties {
 
 @interface _DCTPlaylist (CoreDataGeneratedAccessors)
 
-- (void)addPlaylists:(NSSet*)value_;
-- (void)removePlaylists:(NSSet*)value_;
-- (void)addPlaylistsObject:(DCTPlaylist*)value_;
-- (void)removePlaylistsObject:(DCTPlaylist*)value_;
+- (void)addSongs:(NSSet*)value_;
+- (void)removeSongs:(NSSet*)value_;
+- (void)addSongsObject:(DCTSong*)value_;
+- (void)removeSongsObject:(DCTSong*)value_;
 
 @end
 
 @interface _DCTPlaylist (CoreDataGeneratedPrimitiveAccessors)
 
 
-- (NSNumber*)primitiveDiscNumber;
-- (void)setPrimitiveDiscNumber:(NSNumber*)value;
-
-- (int16_t)primitiveDiscNumberValue;
-- (void)setPrimitiveDiscNumberValue:(int16_t)value_;
-
-
-
-
-- (NSNumber*)primitiveDuration;
-- (void)setPrimitiveDuration:(NSNumber*)value;
-
-- (float)primitiveDurationValue;
-- (void)setPrimitiveDurationValue:(float)value_;
-
-
-
-
-- (NSNumber*)primitiveIdentifier;
-- (void)setPrimitiveIdentifier:(NSNumber*)value;
-
-- (int64_t)primitiveIdentifierValue;
-- (void)setPrimitiveIdentifierValue:(int64_t)value_;
-
-
-
-
-- (NSString*)primitiveLyrics;
-- (void)setPrimitiveLyrics:(NSString*)value;
-
-
-
-
-- (NSNumber*)primitiveRating;
-- (void)setPrimitiveRating:(NSNumber*)value;
-
-- (int16_t)primitiveRatingValue;
-- (void)setPrimitiveRatingValue:(int16_t)value_;
-
-
-
-
-- (NSString*)primitiveTitle;
-- (void)setPrimitiveTitle:(NSString*)value;
-
-
-
-
-- (NSNumber*)primitiveTrackNumber;
-- (void)setPrimitiveTrackNumber:(NSNumber*)value;
-
-- (int16_t)primitiveTrackNumberValue;
-- (void)setPrimitiveTrackNumberValue:(int16_t)value_;
+- (NSString*)primitiveName;
+- (void)setPrimitiveName:(NSString*)value;
 
 
 
 
 
-- (DCTAlbum*)primitiveAlbum;
-- (void)setPrimitiveAlbum:(DCTAlbum*)value;
-
-
-
-- (DCTArtist*)primitiveArtist;
-- (void)setPrimitiveArtist:(DCTArtist*)value;
-
-
-
-- (DCTComposer*)primitiveComposer;
-- (void)setPrimitiveComposer:(DCTComposer*)value;
-
-
-
-- (DCTGenre*)primitiveGenre;
-- (void)setPrimitiveGenre:(DCTGenre*)value;
-
-
-
-- (NSMutableSet*)primitivePlaylists;
-- (void)setPrimitivePlaylists:(NSMutableSet*)value;
+- (NSMutableSet*)primitiveSongs;
+- (void)setPrimitiveSongs:(NSMutableSet*)value;
 
 
 @end

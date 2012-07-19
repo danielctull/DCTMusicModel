@@ -19,9 +19,6 @@
         <relationship name="albums" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DCTAlbum" inverseName="composers" inverseEntity="DCTAlbum" indexed="YES" syncable="YES"/>
         <relationship name="songs" toMany="YES" deletionRule="Nullify" destinationEntity="DCTSong" inverseName="composer" inverseEntity="DCTSong" indexed="YES" syncable="YES"/>
     </entity>
-    <entity name="DCTDataInformation" representedClassName="DCTDataInformation" syncable="YES">
-        <attribute name="lastUpdated" attributeType="Date" syncable="YES"/>
-    </entity>
     <entity name="DCTGenre" representedClassName="DCTGenre" syncable="YES">
         <attribute name="name" attributeType="String" syncable="YES"/>
         <relationship name="artists" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DCTArtist" inverseName="genres" inverseEntity="DCTArtist" indexed="YES" syncable="YES"/>
@@ -31,7 +28,7 @@
         <attribute name="name" attributeType="String" syncable="YES"/>
         <relationship name="songs" toMany="YES" minCount="1" deletionRule="Nullify" destinationEntity="DCTSong" inverseName="playlists" inverseEntity="DCTSong" indexed="YES" syncable="YES"/>
     </entity>
-    <entity name="DCTSong" representedClassName="DCTPlaylist" syncable="YES">
+    <entity name="DCTSong" representedClassName="DCTSong" syncable="YES">
         <attribute name="discNumber" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="duration" optional="YES" attributeType="Float" minValueString="0" defaultValueString="0" syncable="YES"/>
         <attribute name="identifier" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
@@ -47,11 +44,10 @@
     </entity>
     <elements>
         <element name="DCTAlbum" positionX="0" positionY="0" width="128" height="133"/>
-        <element name="DCTArtist" positionX="223" positionY="-9" width="128" height="103"/>
-        <element name="DCTComposer" positionX="223" positionY="-153" width="128" height="88"/>
-        <element name="DCTDataInformation" positionX="18" positionY="-135" width="128" height="58"/>
-        <element name="DCTGenre" positionX="772" positionY="-144" width="128" height="88"/>
-        <element name="DCTPlaylist" positionX="171" positionY="-288" width="128" height="73"/>
-        <element name="DCTSong" positionX="466" positionY="171" width="128" height="223"/>
+        <element name="DCTArtist" positionX="0" positionY="0" width="128" height="103"/>
+        <element name="DCTComposer" positionX="0" positionY="0" width="128" height="88"/>
+        <element name="DCTGenre" positionX="0" positionY="0" width="128" height="88"/>
+        <element name="DCTPlaylist" positionX="0" positionY="0" width="128" height="73"/>
+        <element name="DCTSong" positionX="0" positionY="0" width="128" height="223"/>
     </elements>
 </model>

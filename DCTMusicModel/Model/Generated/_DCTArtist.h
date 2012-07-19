@@ -19,7 +19,7 @@ extern const struct DCTArtistFetchedProperties {
 
 @class DCTAlbum;
 @class DCTGenre;
-@class DCTPlaylist;
+@class DCTSong;
 
 
 
@@ -98,8 +98,8 @@ extern const struct DCTArtistFetchedProperties {
 
 - (void)addSongs:(NSSet*)value_;
 - (void)removeSongs:(NSSet*)value_;
-- (void)addSongsObject:(DCTPlaylist*)value_;
-- (void)removeSongsObject:(DCTPlaylist*)value_;
+- (void)addSongsObject:(DCTSong*)value_;
+- (void)removeSongsObject:(DCTSong*)value_;
 
 @end
 

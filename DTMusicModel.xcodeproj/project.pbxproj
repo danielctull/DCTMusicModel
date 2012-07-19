@@ -16,30 +16,31 @@
 		24700CB815B8495000FA5843 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24700CB715B8495000FA5843 /* CoreFoundation.framework */; };
 		24700CBE15B8495000FA5843 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 24700CBC15B8495000FA5843 /* InfoPlist.strings */; };
 		24700CC515B849B500FA5843 /* DCTMusicModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 24700CC315B849B500FA5843 /* DCTMusicModel.xcdatamodeld */; };
-		24700CE015B84B1900FA5843 /* DCTAlbum.h in Headers */ = {isa = PBXBuildFile; fileRef = 24700CC715B84B1900FA5843 /* DCTAlbum.h */; };
-		24700CE115B84B1900FA5843 /* DCTAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = 24700CC815B84B1900FA5843 /* DCTAlbum.m */; };
-		24700CE215B84B1900FA5843 /* DCTArtist.h in Headers */ = {isa = PBXBuildFile; fileRef = 24700CC915B84B1900FA5843 /* DCTArtist.h */; };
-		24700CE315B84B1900FA5843 /* DCTArtist.m in Sources */ = {isa = PBXBuildFile; fileRef = 24700CCA15B84B1900FA5843 /* DCTArtist.m */; };
-		24700CE415B84B1900FA5843 /* DCTComposer.h in Headers */ = {isa = PBXBuildFile; fileRef = 24700CCB15B84B1900FA5843 /* DCTComposer.h */; };
-		24700CE515B84B1900FA5843 /* DCTComposer.m in Sources */ = {isa = PBXBuildFile; fileRef = 24700CCC15B84B1900FA5843 /* DCTComposer.m */; };
-		24700CE615B84B1900FA5843 /* DCTDataInformation.h in Headers */ = {isa = PBXBuildFile; fileRef = 24700CCD15B84B1900FA5843 /* DCTDataInformation.h */; };
-		24700CE715B84B1900FA5843 /* DCTDataInformation.m in Sources */ = {isa = PBXBuildFile; fileRef = 24700CCE15B84B1900FA5843 /* DCTDataInformation.m */; };
-		24700CE815B84B1900FA5843 /* DCTGenre.h in Headers */ = {isa = PBXBuildFile; fileRef = 24700CCF15B84B1900FA5843 /* DCTGenre.h */; };
-		24700CE915B84B1900FA5843 /* DCTGenre.m in Sources */ = {isa = PBXBuildFile; fileRef = 24700CD015B84B1900FA5843 /* DCTGenre.m */; };
-		24700CEA15B84B1900FA5843 /* DCTPlaylist.h in Headers */ = {isa = PBXBuildFile; fileRef = 24700CD115B84B1900FA5843 /* DCTPlaylist.h */; };
-		24700CEB15B84B1900FA5843 /* DCTPlaylist.m in Sources */ = {isa = PBXBuildFile; fileRef = 24700CD215B84B1900FA5843 /* DCTPlaylist.m */; };
-		24700CEC15B84B1900FA5843 /* _DCTAlbum.h in Headers */ = {isa = PBXBuildFile; fileRef = 24700CD415B84B1900FA5843 /* _DCTAlbum.h */; };
-		24700CED15B84B1900FA5843 /* _DCTAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = 24700CD515B84B1900FA5843 /* _DCTAlbum.m */; };
-		24700CEE15B84B1900FA5843 /* _DCTArtist.h in Headers */ = {isa = PBXBuildFile; fileRef = 24700CD615B84B1900FA5843 /* _DCTArtist.h */; };
-		24700CEF15B84B1900FA5843 /* _DCTArtist.m in Sources */ = {isa = PBXBuildFile; fileRef = 24700CD715B84B1900FA5843 /* _DCTArtist.m */; };
-		24700CF015B84B1900FA5843 /* _DCTComposer.h in Headers */ = {isa = PBXBuildFile; fileRef = 24700CD815B84B1900FA5843 /* _DCTComposer.h */; };
-		24700CF115B84B1900FA5843 /* _DCTComposer.m in Sources */ = {isa = PBXBuildFile; fileRef = 24700CD915B84B1900FA5843 /* _DCTComposer.m */; };
-		24700CF215B84B1900FA5843 /* _DCTDataInformation.h in Headers */ = {isa = PBXBuildFile; fileRef = 24700CDA15B84B1900FA5843 /* _DCTDataInformation.h */; };
-		24700CF315B84B1900FA5843 /* _DCTDataInformation.m in Sources */ = {isa = PBXBuildFile; fileRef = 24700CDB15B84B1900FA5843 /* _DCTDataInformation.m */; };
-		24700CF415B84B1900FA5843 /* _DCTGenre.h in Headers */ = {isa = PBXBuildFile; fileRef = 24700CDC15B84B1900FA5843 /* _DCTGenre.h */; };
-		24700CF515B84B1900FA5843 /* _DCTGenre.m in Sources */ = {isa = PBXBuildFile; fileRef = 24700CDD15B84B1900FA5843 /* _DCTGenre.m */; };
-		24700CF615B84B1900FA5843 /* _DCTPlaylist.h in Headers */ = {isa = PBXBuildFile; fileRef = 24700CDE15B84B1900FA5843 /* _DCTPlaylist.h */; };
-		24700CF715B84B1900FA5843 /* _DCTPlaylist.m in Sources */ = {isa = PBXBuildFile; fileRef = 24700CDF15B84B1900FA5843 /* _DCTPlaylist.m */; };
+		24700D0815B8534600FA5843 /* DCTMusicModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 24700CA715B843E200FA5843 /* DCTMusicModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		24700D5915B853B300FA5843 /* DCTAlbum.h in Headers */ = {isa = PBXBuildFile; fileRef = 24700D3C15B853B300FA5843 /* DCTAlbum.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		24700D5A15B853B300FA5843 /* DCTAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = 24700D3D15B853B300FA5843 /* DCTAlbum.m */; };
+		24700D5B15B853B300FA5843 /* DCTArtist.h in Headers */ = {isa = PBXBuildFile; fileRef = 24700D3E15B853B300FA5843 /* DCTArtist.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		24700D5C15B853B300FA5843 /* DCTArtist.m in Sources */ = {isa = PBXBuildFile; fileRef = 24700D3F15B853B300FA5843 /* DCTArtist.m */; };
+		24700D5D15B853B300FA5843 /* DCTComposer.h in Headers */ = {isa = PBXBuildFile; fileRef = 24700D4015B853B300FA5843 /* DCTComposer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		24700D5E15B853B300FA5843 /* DCTComposer.m in Sources */ = {isa = PBXBuildFile; fileRef = 24700D4115B853B300FA5843 /* DCTComposer.m */; };
+		24700D6115B853B300FA5843 /* DCTGenre.h in Headers */ = {isa = PBXBuildFile; fileRef = 24700D4415B853B300FA5843 /* DCTGenre.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		24700D6215B853B300FA5843 /* DCTGenre.m in Sources */ = {isa = PBXBuildFile; fileRef = 24700D4515B853B300FA5843 /* DCTGenre.m */; };
+		24700D6315B853B300FA5843 /* DCTPlaylist.h in Headers */ = {isa = PBXBuildFile; fileRef = 24700D4615B853B300FA5843 /* DCTPlaylist.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		24700D6415B853B300FA5843 /* DCTPlaylist.m in Sources */ = {isa = PBXBuildFile; fileRef = 24700D4715B853B300FA5843 /* DCTPlaylist.m */; };
+		24700D6515B853B300FA5843 /* DCTSong.h in Headers */ = {isa = PBXBuildFile; fileRef = 24700D4815B853B300FA5843 /* DCTSong.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		24700D6615B853B300FA5843 /* DCTSong.m in Sources */ = {isa = PBXBuildFile; fileRef = 24700D4915B853B300FA5843 /* DCTSong.m */; };
+		24700D6715B853B300FA5843 /* _DCTAlbum.h in Headers */ = {isa = PBXBuildFile; fileRef = 24700D4B15B853B300FA5843 /* _DCTAlbum.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		24700D6815B853B300FA5843 /* _DCTAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = 24700D4C15B853B300FA5843 /* _DCTAlbum.m */; };
+		24700D6915B853B300FA5843 /* _DCTArtist.h in Headers */ = {isa = PBXBuildFile; fileRef = 24700D4D15B853B300FA5843 /* _DCTArtist.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		24700D6A15B853B300FA5843 /* _DCTArtist.m in Sources */ = {isa = PBXBuildFile; fileRef = 24700D4E15B853B300FA5843 /* _DCTArtist.m */; };
+		24700D6B15B853B300FA5843 /* _DCTComposer.h in Headers */ = {isa = PBXBuildFile; fileRef = 24700D4F15B853B300FA5843 /* _DCTComposer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		24700D6C15B853B300FA5843 /* _DCTComposer.m in Sources */ = {isa = PBXBuildFile; fileRef = 24700D5015B853B300FA5843 /* _DCTComposer.m */; };
+		24700D6F15B853B300FA5843 /* _DCTGenre.h in Headers */ = {isa = PBXBuildFile; fileRef = 24700D5315B853B300FA5843 /* _DCTGenre.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		24700D7015B853B300FA5843 /* _DCTGenre.m in Sources */ = {isa = PBXBuildFile; fileRef = 24700D5415B853B300FA5843 /* _DCTGenre.m */; };
+		24700D7115B853B300FA5843 /* _DCTPlaylist.h in Headers */ = {isa = PBXBuildFile; fileRef = 24700D5515B853B300FA5843 /* _DCTPlaylist.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		24700D7215B853B300FA5843 /* _DCTPlaylist.m in Sources */ = {isa = PBXBuildFile; fileRef = 24700D5615B853B300FA5843 /* _DCTPlaylist.m */; };
+		24700D7315B853B300FA5843 /* _DCTSong.h in Headers */ = {isa = PBXBuildFile; fileRef = 24700D5715B853B300FA5843 /* _DCTSong.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		24700D7415B853B300FA5843 /* _DCTSong.m in Sources */ = {isa = PBXBuildFile; fileRef = 24700D5815B853B300FA5843 /* _DCTSong.m */; };
 		24845AAE104C7EE300489910 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 24845AAD104C7EE300489910 /* Icon.png */; };
 		24C28FFA104C774D004513D3 /* DTAlbum+Extras.m in Sources */ = {isa = PBXBuildFile; fileRef = 24C28FE0104C774D004513D3 /* DTAlbum+Extras.m */; };
 		24C28FFB104C774D004513D3 /* DTAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = 24C28FE2104C774D004513D3 /* DTAlbum.m */; };
@@ -117,31 +118,31 @@
 		24700CBD15B8495000FA5843 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		24700CBF15B8495000FA5843 /* DCTMusicModelBundle-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DCTMusicModelBundle-Prefix.pch"; sourceTree = "<group>"; };
 		24700CC415B849B500FA5843 /* DCTMusicModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DCTMusicModel.xcdatamodel; sourceTree = "<group>"; };
-		24700CC715B84B1900FA5843 /* DCTAlbum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCTAlbum.h; sourceTree = "<group>"; };
-		24700CC815B84B1900FA5843 /* DCTAlbum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCTAlbum.m; sourceTree = "<group>"; };
-		24700CC915B84B1900FA5843 /* DCTArtist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCTArtist.h; sourceTree = "<group>"; };
-		24700CCA15B84B1900FA5843 /* DCTArtist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCTArtist.m; sourceTree = "<group>"; };
-		24700CCB15B84B1900FA5843 /* DCTComposer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCTComposer.h; sourceTree = "<group>"; };
-		24700CCC15B84B1900FA5843 /* DCTComposer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCTComposer.m; sourceTree = "<group>"; };
-		24700CCD15B84B1900FA5843 /* DCTDataInformation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCTDataInformation.h; sourceTree = "<group>"; };
-		24700CCE15B84B1900FA5843 /* DCTDataInformation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCTDataInformation.m; sourceTree = "<group>"; };
-		24700CCF15B84B1900FA5843 /* DCTGenre.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCTGenre.h; sourceTree = "<group>"; };
-		24700CD015B84B1900FA5843 /* DCTGenre.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCTGenre.m; sourceTree = "<group>"; };
-		24700CD115B84B1900FA5843 /* DCTPlaylist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCTPlaylist.h; sourceTree = "<group>"; };
-		24700CD215B84B1900FA5843 /* DCTPlaylist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCTPlaylist.m; sourceTree = "<group>"; };
-		24700CD415B84B1900FA5843 /* _DCTAlbum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _DCTAlbum.h; sourceTree = "<group>"; };
-		24700CD515B84B1900FA5843 /* _DCTAlbum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _DCTAlbum.m; sourceTree = "<group>"; };
-		24700CD615B84B1900FA5843 /* _DCTArtist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _DCTArtist.h; sourceTree = "<group>"; };
-		24700CD715B84B1900FA5843 /* _DCTArtist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _DCTArtist.m; sourceTree = "<group>"; };
-		24700CD815B84B1900FA5843 /* _DCTComposer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _DCTComposer.h; sourceTree = "<group>"; };
-		24700CD915B84B1900FA5843 /* _DCTComposer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _DCTComposer.m; sourceTree = "<group>"; };
-		24700CDA15B84B1900FA5843 /* _DCTDataInformation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _DCTDataInformation.h; sourceTree = "<group>"; };
-		24700CDB15B84B1900FA5843 /* _DCTDataInformation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _DCTDataInformation.m; sourceTree = "<group>"; };
-		24700CDC15B84B1900FA5843 /* _DCTGenre.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _DCTGenre.h; sourceTree = "<group>"; };
-		24700CDD15B84B1900FA5843 /* _DCTGenre.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _DCTGenre.m; sourceTree = "<group>"; };
-		24700CDE15B84B1900FA5843 /* _DCTPlaylist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _DCTPlaylist.h; sourceTree = "<group>"; };
-		24700CDF15B84B1900FA5843 /* _DCTPlaylist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _DCTPlaylist.m; sourceTree = "<group>"; };
 		24700CFA15B84D9700FA5843 /* DCTCoreDataStack.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = DCTCoreDataStack.xcodeproj; path = DCTCoreDataStack/DCTCoreDataStack.xcodeproj; sourceTree = "<group>"; };
+		24700D3C15B853B300FA5843 /* DCTAlbum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCTAlbum.h; sourceTree = "<group>"; };
+		24700D3D15B853B300FA5843 /* DCTAlbum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCTAlbum.m; sourceTree = "<group>"; };
+		24700D3E15B853B300FA5843 /* DCTArtist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCTArtist.h; sourceTree = "<group>"; };
+		24700D3F15B853B300FA5843 /* DCTArtist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCTArtist.m; sourceTree = "<group>"; };
+		24700D4015B853B300FA5843 /* DCTComposer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCTComposer.h; sourceTree = "<group>"; };
+		24700D4115B853B300FA5843 /* DCTComposer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCTComposer.m; sourceTree = "<group>"; };
+		24700D4415B853B300FA5843 /* DCTGenre.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCTGenre.h; sourceTree = "<group>"; };
+		24700D4515B853B300FA5843 /* DCTGenre.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCTGenre.m; sourceTree = "<group>"; };
+		24700D4615B853B300FA5843 /* DCTPlaylist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCTPlaylist.h; sourceTree = "<group>"; };
+		24700D4715B853B300FA5843 /* DCTPlaylist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCTPlaylist.m; sourceTree = "<group>"; };
+		24700D4815B853B300FA5843 /* DCTSong.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCTSong.h; sourceTree = "<group>"; };
+		24700D4915B853B300FA5843 /* DCTSong.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCTSong.m; sourceTree = "<group>"; };
+		24700D4B15B853B300FA5843 /* _DCTAlbum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _DCTAlbum.h; sourceTree = "<group>"; };
+		24700D4C15B853B300FA5843 /* _DCTAlbum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _DCTAlbum.m; sourceTree = "<group>"; };
+		24700D4D15B853B300FA5843 /* _DCTArtist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _DCTArtist.h; sourceTree = "<group>"; };
+		24700D4E15B853B300FA5843 /* _DCTArtist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _DCTArtist.m; sourceTree = "<group>"; };
+		24700D4F15B853B300FA5843 /* _DCTComposer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _DCTComposer.h; sourceTree = "<group>"; };
+		24700D5015B853B300FA5843 /* _DCTComposer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _DCTComposer.m; sourceTree = "<group>"; };
+		24700D5315B853B300FA5843 /* _DCTGenre.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _DCTGenre.h; sourceTree = "<group>"; };
+		24700D5415B853B300FA5843 /* _DCTGenre.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _DCTGenre.m; sourceTree = "<group>"; };
+		24700D5515B853B300FA5843 /* _DCTPlaylist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _DCTPlaylist.h; sourceTree = "<group>"; };
+		24700D5615B853B300FA5843 /* _DCTPlaylist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _DCTPlaylist.m; sourceTree = "<group>"; };
+		24700D5715B853B300FA5843 /* _DCTSong.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _DCTSong.h; sourceTree = "<group>"; };
+		24700D5815B853B300FA5843 /* _DCTSong.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _DCTSong.m; sourceTree = "<group>"; };
 		24845AAD104C7EE300489910 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		24C28FDF104C774D004513D3 /* DTAlbum+Extras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DTAlbum+Extras.h"; sourceTree = "<group>"; };
 		24C28FE0104C774D004513D3 /* DTAlbum+Extras.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DTAlbum+Extras.m"; sourceTree = "<group>"; };
@@ -258,7 +259,7 @@
 			children = (
 				24700CA715B843E200FA5843 /* DCTMusicModel.h */,
 				24700CA915B843E200FA5843 /* DCTMusicModel.m */,
-				24700CC615B84B1900FA5843 /* Model */,
+				24700D3B15B853B300FA5843 /* Model */,
 				24700CA515B843E200FA5843 /* Supporting Files */,
 			);
 			path = DCTMusicModel;
@@ -291,45 +292,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		24700CC615B84B1900FA5843 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				24700CC715B84B1900FA5843 /* DCTAlbum.h */,
-				24700CC815B84B1900FA5843 /* DCTAlbum.m */,
-				24700CC915B84B1900FA5843 /* DCTArtist.h */,
-				24700CCA15B84B1900FA5843 /* DCTArtist.m */,
-				24700CCB15B84B1900FA5843 /* DCTComposer.h */,
-				24700CCC15B84B1900FA5843 /* DCTComposer.m */,
-				24700CCD15B84B1900FA5843 /* DCTDataInformation.h */,
-				24700CCE15B84B1900FA5843 /* DCTDataInformation.m */,
-				24700CCF15B84B1900FA5843 /* DCTGenre.h */,
-				24700CD015B84B1900FA5843 /* DCTGenre.m */,
-				24700CD115B84B1900FA5843 /* DCTPlaylist.h */,
-				24700CD215B84B1900FA5843 /* DCTPlaylist.m */,
-				24700CD315B84B1900FA5843 /* Generated */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		24700CD315B84B1900FA5843 /* Generated */ = {
-			isa = PBXGroup;
-			children = (
-				24700CD415B84B1900FA5843 /* _DCTAlbum.h */,
-				24700CD515B84B1900FA5843 /* _DCTAlbum.m */,
-				24700CD615B84B1900FA5843 /* _DCTArtist.h */,
-				24700CD715B84B1900FA5843 /* _DCTArtist.m */,
-				24700CD815B84B1900FA5843 /* _DCTComposer.h */,
-				24700CD915B84B1900FA5843 /* _DCTComposer.m */,
-				24700CDA15B84B1900FA5843 /* _DCTDataInformation.h */,
-				24700CDB15B84B1900FA5843 /* _DCTDataInformation.m */,
-				24700CDC15B84B1900FA5843 /* _DCTGenre.h */,
-				24700CDD15B84B1900FA5843 /* _DCTGenre.m */,
-				24700CDE15B84B1900FA5843 /* _DCTPlaylist.h */,
-				24700CDF15B84B1900FA5843 /* _DCTPlaylist.m */,
-			);
-			path = Generated;
-			sourceTree = "<group>";
-		};
 		24700CFB15B84D9700FA5843 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -337,6 +299,45 @@
 				24700D0515B84D9700FA5843 /* DCTCoreDataStackTests.octest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		24700D3B15B853B300FA5843 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				24700D3C15B853B300FA5843 /* DCTAlbum.h */,
+				24700D3D15B853B300FA5843 /* DCTAlbum.m */,
+				24700D3E15B853B300FA5843 /* DCTArtist.h */,
+				24700D3F15B853B300FA5843 /* DCTArtist.m */,
+				24700D4015B853B300FA5843 /* DCTComposer.h */,
+				24700D4115B853B300FA5843 /* DCTComposer.m */,
+				24700D4415B853B300FA5843 /* DCTGenre.h */,
+				24700D4515B853B300FA5843 /* DCTGenre.m */,
+				24700D4615B853B300FA5843 /* DCTPlaylist.h */,
+				24700D4715B853B300FA5843 /* DCTPlaylist.m */,
+				24700D4815B853B300FA5843 /* DCTSong.h */,
+				24700D4915B853B300FA5843 /* DCTSong.m */,
+				24700D4A15B853B300FA5843 /* Generated */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		24700D4A15B853B300FA5843 /* Generated */ = {
+			isa = PBXGroup;
+			children = (
+				24700D4B15B853B300FA5843 /* _DCTAlbum.h */,
+				24700D4C15B853B300FA5843 /* _DCTAlbum.m */,
+				24700D4D15B853B300FA5843 /* _DCTArtist.h */,
+				24700D4E15B853B300FA5843 /* _DCTArtist.m */,
+				24700D4F15B853B300FA5843 /* _DCTComposer.h */,
+				24700D5015B853B300FA5843 /* _DCTComposer.m */,
+				24700D5315B853B300FA5843 /* _DCTGenre.h */,
+				24700D5415B853B300FA5843 /* _DCTGenre.m */,
+				24700D5515B853B300FA5843 /* _DCTPlaylist.h */,
+				24700D5615B853B300FA5843 /* _DCTPlaylist.m */,
+				24700D5715B853B300FA5843 /* _DCTSong.h */,
+				24700D5815B853B300FA5843 /* _DCTSong.m */,
+			);
+			path = Generated;
 			sourceTree = "<group>";
 		};
 		24C28FDE104C774D004513D3 /* DTMusicModel */ = {
@@ -450,18 +451,19 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				24700CE015B84B1900FA5843 /* DCTAlbum.h in Headers */,
-				24700CE215B84B1900FA5843 /* DCTArtist.h in Headers */,
-				24700CE415B84B1900FA5843 /* DCTComposer.h in Headers */,
-				24700CE615B84B1900FA5843 /* DCTDataInformation.h in Headers */,
-				24700CE815B84B1900FA5843 /* DCTGenre.h in Headers */,
-				24700CEA15B84B1900FA5843 /* DCTPlaylist.h in Headers */,
-				24700CEC15B84B1900FA5843 /* _DCTAlbum.h in Headers */,
-				24700CEE15B84B1900FA5843 /* _DCTArtist.h in Headers */,
-				24700CF015B84B1900FA5843 /* _DCTComposer.h in Headers */,
-				24700CF215B84B1900FA5843 /* _DCTDataInformation.h in Headers */,
-				24700CF415B84B1900FA5843 /* _DCTGenre.h in Headers */,
-				24700CF615B84B1900FA5843 /* _DCTPlaylist.h in Headers */,
+				24700D0815B8534600FA5843 /* DCTMusicModel.h in Headers */,
+				24700D5915B853B300FA5843 /* DCTAlbum.h in Headers */,
+				24700D5B15B853B300FA5843 /* DCTArtist.h in Headers */,
+				24700D5D15B853B300FA5843 /* DCTComposer.h in Headers */,
+				24700D6115B853B300FA5843 /* DCTGenre.h in Headers */,
+				24700D6315B853B300FA5843 /* DCTPlaylist.h in Headers */,
+				24700D6515B853B300FA5843 /* DCTSong.h in Headers */,
+				24700D6715B853B300FA5843 /* _DCTAlbum.h in Headers */,
+				24700D6915B853B300FA5843 /* _DCTArtist.h in Headers */,
+				24700D6B15B853B300FA5843 /* _DCTComposer.h in Headers */,
+				24700D6F15B853B300FA5843 /* _DCTGenre.h in Headers */,
+				24700D7115B853B300FA5843 /* _DCTPlaylist.h in Headers */,
+				24700D7315B853B300FA5843 /* _DCTSong.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -629,18 +631,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				24700CAA15B843E200FA5843 /* DCTMusicModel.m in Sources */,
-				24700CE115B84B1900FA5843 /* DCTAlbum.m in Sources */,
-				24700CE315B84B1900FA5843 /* DCTArtist.m in Sources */,
-				24700CE515B84B1900FA5843 /* DCTComposer.m in Sources */,
-				24700CE715B84B1900FA5843 /* DCTDataInformation.m in Sources */,
-				24700CE915B84B1900FA5843 /* DCTGenre.m in Sources */,
-				24700CEB15B84B1900FA5843 /* DCTPlaylist.m in Sources */,
-				24700CED15B84B1900FA5843 /* _DCTAlbum.m in Sources */,
-				24700CEF15B84B1900FA5843 /* _DCTArtist.m in Sources */,
-				24700CF115B84B1900FA5843 /* _DCTComposer.m in Sources */,
-				24700CF315B84B1900FA5843 /* _DCTDataInformation.m in Sources */,
-				24700CF515B84B1900FA5843 /* _DCTGenre.m in Sources */,
-				24700CF715B84B1900FA5843 /* _DCTPlaylist.m in Sources */,
+				24700D5A15B853B300FA5843 /* DCTAlbum.m in Sources */,
+				24700D5C15B853B300FA5843 /* DCTArtist.m in Sources */,
+				24700D5E15B853B300FA5843 /* DCTComposer.m in Sources */,
+				24700D6215B853B300FA5843 /* DCTGenre.m in Sources */,
+				24700D6415B853B300FA5843 /* DCTPlaylist.m in Sources */,
+				24700D6615B853B300FA5843 /* DCTSong.m in Sources */,
+				24700D6815B853B300FA5843 /* _DCTAlbum.m in Sources */,
+				24700D6A15B853B300FA5843 /* _DCTArtist.m in Sources */,
+				24700D6C15B853B300FA5843 /* _DCTComposer.m in Sources */,
+				24700D7015B853B300FA5843 /* _DCTGenre.m in Sources */,
+				24700D7215B853B300FA5843 /* _DCTPlaylist.m in Sources */,
+				24700D7415B853B300FA5843 /* _DCTSong.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -723,6 +725,8 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_OBJCPP_ARC_ABI = NO;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DSTROOT = /tmp/DCTMusicModel.dst;
@@ -751,6 +755,8 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_OBJCPP_ARC_ABI = NO;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = YES;
 				DSTROOT = /tmp/DCTMusicModel.dst;

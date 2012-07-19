@@ -9,6 +9,15 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
+#import "DCTSong.h"
+#import "DCTArtist.h"
+#import "DCTAlbum.h"
+#import "DCTPlaylist.h"
+#import "DCTGenre.h"
+#import "DCTComposer.h"
+
+
+
 @interface DCTMusicModel : NSObject
 
 + (NSBundle *)bundle;

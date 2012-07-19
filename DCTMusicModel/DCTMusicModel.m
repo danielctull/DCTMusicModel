@@ -54,8 +54,8 @@ static NSBundle *_bundle = nil;
 
 
 - (void)_import {
-	NSLog(@"%@:%@", self, NSStringFromSelector(_cmd));
 	
+	_importing = YES;
 	UIApplication *app = [UIApplication sharedApplication];
 	UIBackgroundTaskIdentifier backgroundTaskIdentifier = [app beginBackgroundTaskWithExpirationHandler:NULL];
 	
@@ -68,13 +68,17 @@ static NSBundle *_bundle = nil;
 		MPMediaQuery *mediaQuery = [MPMediaQuery new];
 		NSArray *items = mediaQuery.items;
 		
+		MPMediaQuery *playlistsQuery = [MPMediaQuery playlistsQuery];
+		NSArray *mediaPlaylists = [playlistsQuery collections];
+		
+		CGFloat amountOfItemsToProcess = [items count] + [mediaPlaylists count] + 1;
+		__block CGFloat itemsProcessed = 0.0f;
+		
 		NSMutableDictionary *artistsDictionary = [NSMutableDictionary new];
 		NSMutableDictionary *composersDictionary = [NSMutableDictionary new];
 		NSMutableDictionary *genresDictionary = [NSMutableDictionary new];
 		NSMutableDictionary *albumsDictionary = [NSMutableDictionary new];
 		NSMutableDictionary *songsDictionary = [NSMutableDictionary new];
-		
-		__block NSInteger i = 0;
 		
 		[items enumerateObjectsUsingBlock:^(MPMediaItem *item, NSUInteger idx, BOOL *stop) {
 			
@@ -136,18 +140,9 @@ static NSBundle *_bundle = nil;
 			
 			[songsDictionary setObject:song forKey:song.identifier];
 			
-			i++;
-			if (i % 500 != 0) return;
-			
-			[backgroundContext dct_saveWithCompletionHandler:^(BOOL success, NSError *error) {
-				[mainContext performBlock:^{
-					[mainContext dct_save];
-				}];
-			}];
+			itemsProcessed++;
+			[self _itemsComplete:itemsProcessed totalItems:amountOfItemsToProcess];
 		}];
-		
-		MPMediaQuery *playlistsQuery = [MPMediaQuery playlistsQuery];
-		NSArray *mediaPlaylists = [playlistsQuery collections];
 		
 		[mediaPlaylists enumerateObjectsUsingBlock:^(MPMediaPlaylist *mediaPlaylist, NSUInteger idx, BOOL *stop) {
 			
@@ -159,11 +154,8 @@ static NSBundle *_bundle = nil;
 				if (song) [playlist addSongsObject:song];
 			}];
 			
-			[backgroundContext dct_saveWithCompletionHandler:^(BOOL success, NSError *error) {
-				[mainContext performBlock:^{
-					[mainContext dct_save];
-				}];
-			}];
+			itemsProcessed++;
+			[self _itemsComplete:itemsProcessed totalItems:amountOfItemsToProcess];
 		}];
 		
 		[backgroundContext dct_saveWithCompletionHandler:^(BOOL success, NSError *error) {
@@ -172,10 +164,23 @@ static NSBundle *_bundle = nil;
 					NSDictionary *last = @{@"date":[NSDate date]};
 					[last writeToURL:[[self class] _lastUpdatedFileURL] atomically:YES];
 					[app endBackgroundTask:backgroundTaskIdentifier];
+					itemsProcessed++;
+					[self _itemsComplete:itemsProcessed totalItems:amountOfItemsToProcess];
+					_importing = NO;
 				}];
 			}];
 		}];
 	}];
+}
+
+- (void)_itemsComplete:(CGFloat)itemCount totalItems:(CGFloat)totalItems {
+	
+	if (self.importHandler == NULL) return;
+	
+	CGFloat percentage = itemCount / totalItems;
+	dispatch_async(dispatch_get_main_queue(), ^{
+		self.importHandler(percentage, (itemCount == totalItems));
+	});
 }
 
 - (NSManagedObjectContext *)managedObjectContext {

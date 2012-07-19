@@ -1,3 +1,6 @@
 [submodule "DCTCoreDataStack"]
 	path = DCTCoreDataStack
 	url = git://github.com/danielctull/DCTCoreDataStack.git
+[submodule "DCTTableViewDataSources"]
+	path = DCTTableViewDataSources
+	url = git://github.com/danielctull/DCTTableViewDataSources.git

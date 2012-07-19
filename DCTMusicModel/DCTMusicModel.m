@@ -21,13 +21,16 @@ static NSBundle *_bundle = nil;
 	if (!self) return nil;
 	
 	BOOL needsUpdating = NO;
-	NSURL *storeURL = [[[self class] _applicationDocumentsDirectory] URLByAppendingPathComponent:@"DCTMusicModel"];
 	NSFileManager *fileManager = [NSFileManager defaultManager];
 	
-	if (![fileManager fileExistsAtPath:[storeURL path]]) {
+	NSURL *updatedDateURL = [[self class] _lastUpdatedFileURL];
+	NSURL *storeURL = [[[self class] _applicationDocumentsDirectory] URLByAppendingPathComponent:@"DCTMusicModel"];
+	NSURL *modelURL = [[self class] managedObjectModelURL];
+	
+	if (![fileManager fileExistsAtPath:[updatedDateURL path]]) {
 		needsUpdating = YES;
 	} else {
-		NSDictionary *attributes = [fileManager attributesOfItemAtPath:[storeURL path] error:nil];
+		NSDictionary *attributes = [fileManager attributesOfItemAtPath:[updatedDateURL path] error:nil];
 		NSDate *storeDate = [attributes objectForKey:NSFileCreationDate];
 		NSDate *libraryLastModified = [[MPMediaLibrary defaultMediaLibrary] lastModifiedDate];
 	
@@ -36,8 +39,6 @@ static NSBundle *_bundle = nil;
 			needsUpdating = YES;
 		}
 	}
-	
-	NSURL *modelURL = [[self class] managedObjectModelURL];
 	
 	_coreDataStack = [[DCTCoreDataStack alloc] initWithStoreURL:storeURL
 													  storeType:NSSQLiteStoreType
@@ -53,7 +54,7 @@ static NSBundle *_bundle = nil;
 
 
 - (void)_import {
-	
+	NSLog(@"%@:%@", self, NSStringFromSelector(_cmd));
 	NSManagedObjectContext *mainContext = self.managedObjectContext;
 	NSManagedObjectContext *backgroundContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
 	backgroundContext.parentContext = mainContext;
@@ -68,6 +69,8 @@ static NSBundle *_bundle = nil;
 		NSMutableDictionary *genresDictionary = [NSMutableDictionary new];
 		NSMutableDictionary *albumsDictionary = [NSMutableDictionary new];
 		NSMutableDictionary *songsDictionary = [NSMutableDictionary new];
+		
+		__block NSInteger i = 0;
 		
 		[items enumerateObjectsUsingBlock:^(MPMediaItem *item, NSUInteger idx, BOOL *stop) {
 			
@@ -129,9 +132,13 @@ static NSBundle *_bundle = nil;
 			
 			[songsDictionary setObject:song forKey:song.identifier];
 			
-			[backgroundContext dct_save];
-			[mainContext performBlock:^{
-				[mainContext dct_save];
+			i++;
+			if (i % 500 != 0) return;
+			
+			[backgroundContext dct_saveWithCompletionHandler:^(BOOL success, NSError *error) {
+				[mainContext performBlock:^{
+					[mainContext dct_save];
+				}];
 			}];
 		}];
 		
@@ -145,13 +152,19 @@ static NSBundle *_bundle = nil;
 			
 			[mediaPlaylist.items enumerateObjectsUsingBlock:^(MPMediaItem *item, NSUInteger idx, BOOL *stop) {
 				DCTSong *song = [songsDictionary objectForKey:[item valueForProperty:MPMediaItemPropertyPersistentID]];
-				[playlist addSongsObject:song];
+				if (song) [playlist addSongsObject:song];
 			}];
 			
-			[backgroundContext dct_save];
-			[mainContext performBlock:^{
-				[mainContext dct_save];
+			[backgroundContext dct_saveWithCompletionHandler:^(BOOL success, NSError *error) {
+				[mainContext performBlock:^{
+					[mainContext dct_save];
+				}];
 			}];
+		}];
+		
+		[mainContext performBlock:^{
+			NSDictionary *last = @{@"date":[NSDate date]};
+			[last writeToURL:[[self class] _lastUpdatedFileURL] atomically:YES];
 		}];
 	}];
 }
@@ -179,6 +192,10 @@ static NSBundle *_bundle = nil;
 	});
 	
 	return _bundle;
+}
+
++ (NSURL *)_lastUpdatedFileURL {
+	return [[self _applicationDocumentsDirectory] URLByAppendingPathComponent:@"DCTMusicModel.updated"];
 }
 
 + (NSURL *)_applicationDocumentsDirectory {

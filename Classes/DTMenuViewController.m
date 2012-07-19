@@ -7,7 +7,6 @@
 //
 
 #import "DTMenuViewController.h"
-#import "DTLicenseAgreementViewController.h"
 #import "DTArtistsViewController.h"
 #import "DTAlbumsViewController.h"
 #import "DTSongsViewController.h"
@@ -86,9 +85,6 @@
 	UIViewController *vc = nil;
 	
 	if (indexPath.section == 0) {
-		vc = [[DTLicenseAgreementViewController alloc] init];
-		[self.navigationController pushViewController:vc animated:YES];
-		[vc release];
 		return;
 	} else if ([cellTitle isEqualToString:@"Artists"]) {
 		vc = [[DTArtistsViewController alloc] initWithItems:[musicModelController allArtists]];

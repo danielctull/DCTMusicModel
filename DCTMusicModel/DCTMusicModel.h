@@ -25,6 +25,6 @@
 @property (readonly) NSManagedObjectContext *managedObjectContext;
 
 @property (nonatomic, readonly, getter=isImporting) BOOL importing;
-@property (nonatomic, strong) void (^importHandler)(CGFloat percentComplete, BOOL complete);
+@property (nonatomic, copy) void (^importHandler)(CGFloat percentComplete, BOOL complete);
 
 @end

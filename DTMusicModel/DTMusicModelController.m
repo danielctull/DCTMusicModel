@@ -72,7 +72,7 @@ NSString *DTMusicModelUpdatingProgressPercentageKey = @"DTMusicModelUpdatingProg
 	}
 	
 	if ([fetchResult count] == 0) {
-		NSLog(@"%@:%s", self, _cmd);
+		NSLog(@"%@:%@", self, NSStringFromSelector(_cmd));
 		[NSThread detachNewThreadSelector:@selector(setupMusicData) toTarget:self withObject:nil];
 		return self;
 	}
@@ -85,7 +85,7 @@ NSString *DTMusicModelUpdatingProgressPercentageKey = @"DTMusicModelUpdatingProg
 	NSDate *libraryLastModified = [[MPMediaLibrary defaultMediaLibrary] lastModifiedDate];
 	NSDate *dataLastUpdated = dataInfo.lastUpdated;
 		
-	NSLog(@"%@:%s library:%@ coredata:%@", self, _cmd, libraryLastModified, dataLastUpdated);
+	NSLog(@"%@:%@ library:%@ coredata:%@", self, NSStringFromSelector(_cmd), libraryLastModified, dataLastUpdated);
 		
 	if ([libraryLastModified compare:dataLastUpdated] == NSOrderedDescending)
 		[NSThread detachNewThreadSelector:@selector(setupMusicData) toTarget:self withObject:nil];
@@ -341,7 +341,7 @@ NSString *DTMusicModelUpdatingProgressPercentageKey = @"DTMusicModelUpdatingProg
 	NSError *error = nil;
 	[self.managedObjectContext save:&error];
 	if (error)
-		NSLog(@"%@:%s Saving error: %@ : %@", self, _cmd, error, [error userInfo]);
+		NSLog(@"%@:%@ Saving error: %@ : %@", self, NSStringFromSelector(_cmd), error, [error userInfo]);
 	
 	//[[NSNotificationCenter defaultCenter] postNotificationName:DTMusicModelDidEndUpdatingNotification object:self userInfo:progressDictionary];
 	[self performSelectorOnMainThread:@selector(sendDTMusicModelDidEndUpdatingNotificationWithUserInfo:) withObject:progressDictionary waitUntilDone:YES];
@@ -502,7 +502,7 @@ NSString *DTMusicModelUpdatingProgressPercentageKey = @"DTMusicModelUpdatingProg
     persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:self.managedObjectModel];
 
     if (![persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:[self storeURL] options:nil error:&error]) {
-		NSLog(@"%@:%s %@", self, _cmd, error);
+		NSLog(@"%@:%@ %@", self, NSStringFromSelector(_cmd), error);
     }
 	
     return persistentStoreCoordinator;

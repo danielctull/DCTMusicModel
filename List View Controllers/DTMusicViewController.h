@@ -12,5 +12,5 @@
 @interface DTMusicViewController : UITableViewController {
 	NSArray *items;
 }
-
+- (id)initWithItems:(NSArray *)someItems;
 @end

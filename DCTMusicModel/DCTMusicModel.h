@@ -7,7 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreData/CoreData.h>
 
 @interface DCTMusicModel : NSObject
+
++ (NSBundle *)bundle;
++ (NSURL *)managedObjectModelURL;
+
+@property (readonly) NSManagedObjectContext *managedObjectContext;
 
 @end

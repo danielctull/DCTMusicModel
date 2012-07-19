@@ -79,6 +79,27 @@
 			remoteGlobalIDString = 24700CB515B8495000FA5843;
 			remoteInfo = DCTMusicModelBundle;
 		};
+		24700D0215B84D9700FA5843 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 24700CFA15B84D9700FA5843 /* DCTCoreDataStack.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 24F6EBF0158A261000CEDD41;
+			remoteInfo = DCTCoreDataStack;
+		};
+		24700D0415B84D9700FA5843 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 24700CFA15B84D9700FA5843 /* DCTCoreDataStack.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 24F6EC00158A261000CEDD41;
+			remoteInfo = DCTCoreDataStackTests;
+		};
+		24700D0615B84DA300FA5843 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 24700CFA15B84D9700FA5843 /* DCTCoreDataStack.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 24F6EBEF158A261000CEDD41;
+			remoteInfo = DCTCoreDataStack;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -120,6 +141,7 @@
 		24700CDD15B84B1900FA5843 /* _DCTGenre.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _DCTGenre.m; sourceTree = "<group>"; };
 		24700CDE15B84B1900FA5843 /* _DCTPlaylist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _DCTPlaylist.h; sourceTree = "<group>"; };
 		24700CDF15B84B1900FA5843 /* _DCTPlaylist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _DCTPlaylist.m; sourceTree = "<group>"; };
+		24700CFA15B84D9700FA5843 /* DCTCoreDataStack.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = DCTCoreDataStack.xcodeproj; path = DCTCoreDataStack/DCTCoreDataStack.xcodeproj; sourceTree = "<group>"; };
 		24845AAD104C7EE300489910 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		24C28FDF104C774D004513D3 /* DTAlbum+Extras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DTAlbum+Extras.h"; sourceTree = "<group>"; };
 		24C28FE0104C774D004513D3 /* DTAlbum+Extras.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DTAlbum+Extras.m"; sourceTree = "<group>"; };
@@ -308,6 +330,15 @@
 			path = Generated;
 			sourceTree = "<group>";
 		};
+		24700CFB15B84D9700FA5843 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				24700D0315B84D9700FA5843 /* libDCTCoreDataStack.a */,
+				24700D0515B84D9700FA5843 /* DCTCoreDataStackTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		24C28FDE104C774D004513D3 /* DTMusicModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -373,6 +404,7 @@
 				24700CB915B8495000FA5843 /* DCTMusicModelBundle */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
+				24700CFA15B84D9700FA5843 /* DCTCoreDataStack.xcodeproj */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -464,6 +496,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				24700D0715B84DA300FA5843 /* PBXTargetDependency */,
 				24700CF915B84B2E00FA5843 /* PBXTargetDependency */,
 			);
 			name = DCTMusicModel;
@@ -505,6 +538,12 @@
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 24700CFB15B84D9700FA5843 /* Products */;
+					ProjectRef = 24700CFA15B84D9700FA5843 /* DCTCoreDataStack.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				1D6058900D05DD3D006BFB54 /* DTMusicModel */,
@@ -513,6 +552,23 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		24700D0315B84D9700FA5843 /* libDCTCoreDataStack.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libDCTCoreDataStack.a;
+			remoteRef = 24700D0215B84D9700FA5843 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		24700D0515B84D9700FA5843 /* DCTCoreDataStackTests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = DCTCoreDataStackTests.octest;
+			remoteRef = 24700D0415B84D9700FA5843 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		1D60588D0D05DD3D006BFB54 /* Resources */ = {
@@ -603,6 +659,11 @@
 			isa = PBXTargetDependency;
 			target = 24700CB515B8495000FA5843 /* DCTMusicModelBundle */;
 			targetProxy = 24700CF815B84B2E00FA5843 /* PBXContainerItemProxy */;
+		};
+		24700D0715B84DA300FA5843 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = DCTCoreDataStack;
+			targetProxy = 24700D0615B84DA300FA5843 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

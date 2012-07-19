@@ -40,7 +40,7 @@ static NSBundle *_bundle = nil;
 	NSURL *modelURL = [[self class] managedObjectModelURL];
 	
 	_coreDataStack = [[DCTCoreDataStack alloc] initWithStoreURL:storeURL
-													  storeType:nil
+													  storeType:NSSQLiteStoreType
 												   storeOptions:nil
 											 modelConfiguration:nil
 													   modelURL:modelURL];

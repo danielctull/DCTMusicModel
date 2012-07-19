@@ -55,6 +55,10 @@ static NSBundle *_bundle = nil;
 
 - (void)_import {
 	NSLog(@"%@:%@", self, NSStringFromSelector(_cmd));
+	
+	UIApplication *app = [UIApplication sharedApplication];
+	UIBackgroundTaskIdentifier backgroundTaskIdentifier = [app beginBackgroundTaskWithExpirationHandler:NULL];
+	
 	NSManagedObjectContext *mainContext = self.managedObjectContext;
 	NSManagedObjectContext *backgroundContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
 	backgroundContext.parentContext = mainContext;
@@ -162,9 +166,14 @@ static NSBundle *_bundle = nil;
 			}];
 		}];
 		
-		[mainContext performBlock:^{
-			NSDictionary *last = @{@"date":[NSDate date]};
-			[last writeToURL:[[self class] _lastUpdatedFileURL] atomically:YES];
+		[backgroundContext dct_saveWithCompletionHandler:^(BOOL success, NSError *error) {
+			[mainContext performBlock:^{
+				[mainContext dct_saveWithCompletionHandler:^(BOOL success, NSError *error) {
+					NSDictionary *last = @{@"date":[NSDate date]};
+					[last writeToURL:[[self class] _lastUpdatedFileURL] atomically:YES];
+					[app endBackgroundTask:backgroundTaskIdentifier];
+				}];
+			}];
 		}];
 	}];
 }

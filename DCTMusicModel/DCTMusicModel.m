@@ -14,6 +14,7 @@ static NSBundle *_bundle = nil;
 
 @implementation DCTMusicModel {
 	__strong DCTCoreDataStack *_coreDataStack;
+	__strong NSManagedObjectContext *backgroundContext;
 }
 
 - (id)init {
@@ -46,6 +47,9 @@ static NSBundle *_bundle = nil;
 											 modelConfiguration:nil
 													   modelURL:modelURL];
 	
+	backgroundContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
+	backgroundContext.parentContext = _coreDataStack.managedObjectContext;
+	
 	if (needsUpdating) [self _import];
 	
 	return self;
@@ -60,19 +64,11 @@ static NSBundle *_bundle = nil;
 	UIBackgroundTaskIdentifier backgroundTaskIdentifier = [app beginBackgroundTaskWithExpirationHandler:NULL];
 	
 	NSManagedObjectContext *mainContext = self.managedObjectContext;
-	NSManagedObjectContext *backgroundContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
-	backgroundContext.parentContext = mainContext;
-	
 	[backgroundContext performBlock:^{
 		
 		MPMediaQuery *mediaQuery = [MPMediaQuery new];
 		NSArray *items = mediaQuery.items;
-		
-		MPMediaQuery *playlistsQuery = [MPMediaQuery playlistsQuery];
-		NSArray *mediaPlaylists = [playlistsQuery collections];
-		
-		CGFloat amountOfItemsToProcess = [items count] + [mediaPlaylists count] + 1;
-		__block CGFloat itemsProcessed = 0.0f;
+		CGFloat count = (CGFloat)[items count];
 		
 		NSMutableDictionary *artistsDictionary = [NSMutableDictionary new];
 		NSMutableDictionary *composersDictionary = [NSMutableDictionary new];
@@ -80,7 +76,7 @@ static NSBundle *_bundle = nil;
 		NSMutableDictionary *albumsDictionary = [NSMutableDictionary new];
 		NSMutableDictionary *songsDictionary = [NSMutableDictionary new];
 		
-		[items enumerateObjectsUsingBlock:^(MPMediaItem *item, NSUInteger idx, BOOL *stop) {
+		[items enumerateObjectsUsingBlock:^(MPMediaItem *item, NSUInteger index, BOOL *stop) {
 			
 			DCTSong *song = [DCTSong insertInManagedObjectContext:backgroundContext];
 			song.identifier = [item valueForProperty:MPMediaItemPropertyPersistentID];
@@ -103,15 +99,14 @@ static NSBundle *_bundle = nil;
 			
 			NSString *albumTitle = [item valueForProperty:MPMediaItemPropertyAlbumTitle];
 			if (albumTitle.length > 0) {
-				NSString *albumKey = [NSString stringWithFormat:@"%@%@", artistName, albumTitle];
-				DCTAlbum *album = [albumsDictionary objectForKey:albumKey];
+				DCTAlbum *album = [albumsDictionary objectForKey:albumTitle];
 				if (!album) {
 					album = [DCTAlbum insertInManagedObjectContext:backgroundContext];
 					album.title = albumTitle;
 					album.artist = artist;
 					album.trackCount = [item valueForProperty:MPMediaItemPropertyAlbumTrackCount];
 					album.discCount = [item valueForProperty:MPMediaItemPropertyDiscCount];
-					[albumsDictionary setObject:album forKey:albumKey];
+					[albumsDictionary setObject:album forKey:albumTitle];
 				}
 				song.album = album;
 			}
@@ -140,17 +135,21 @@ static NSBundle *_bundle = nil;
 			
 			[songsDictionary setObject:song forKey:song.identifier];
 			
-			itemsProcessed++;
-			[self _itemsComplete:itemsProcessed totalItems:amountOfItemsToProcess];
-		}];
-		
-		[backgroundContext dct_saveWithCompletionHandler:^(BOOL success, NSError *error) {
-			[mainContext performBlock:^{
-				[mainContext dct_save];
+			if (index % 500 != 0) return;
+			
+			[backgroundContext dct_saveWithCompletionHandler:^(BOOL success, NSError *error) {
+				[mainContext performBlock:^{
+					[self _percentComplete:0.5f*index/count];
+					[mainContext dct_save];
+				}];
 			}];
 		}];
+				
+		MPMediaQuery *playlistsQuery = [MPMediaQuery playlistsQuery];
+		NSArray *mediaPlaylists = [playlistsQuery collections];
+		count = (CGFloat)[mediaPlaylists count];
 		
-		[mediaPlaylists enumerateObjectsUsingBlock:^(MPMediaPlaylist *mediaPlaylist, NSUInteger idx, BOOL *stop) {
+		[mediaPlaylists enumerateObjectsUsingBlock:^(MPMediaPlaylist *mediaPlaylist, NSUInteger index, BOOL *stop) {
 			
 			DCTPlaylist *playlist = [DCTPlaylist insertInManagedObjectContext:backgroundContext];
 			playlist.name = [mediaPlaylist valueForProperty:MPMediaPlaylistPropertyName];
@@ -160,11 +159,9 @@ static NSBundle *_bundle = nil;
 				if (song) [playlist addSongsObject:song];
 			}];
 			
-			itemsProcessed++;
-			[self _itemsComplete:itemsProcessed totalItems:amountOfItemsToProcess];
-			
 			[backgroundContext dct_saveWithCompletionHandler:^(BOOL success, NSError *error) {
 				[mainContext performBlock:^{
+					[self _percentComplete:0.5f+(index/count)];
 					[mainContext dct_save];
 				}];
 			}];
@@ -178,8 +175,7 @@ static NSBundle *_bundle = nil;
 									 encoding:NSUTF8StringEncoding
 										error:nil];
 					[app endBackgroundTask:backgroundTaskIdentifier];
-					itemsProcessed++;
-					[self _itemsComplete:itemsProcessed totalItems:amountOfItemsToProcess];
+					[self _percentComplete:1.0f];
 					_importing = NO;
 				}];
 			}];
@@ -187,14 +183,11 @@ static NSBundle *_bundle = nil;
 	}];
 }
 
-- (void)_itemsComplete:(CGFloat)itemCount totalItems:(CGFloat)totalItems {
+- (void)_percentComplete:(CGFloat)percentage {
 	
 	if (self.importHandler == NULL) return;
 	
-	CGFloat percentage = itemCount / totalItems;
-	dispatch_async(dispatch_get_main_queue(), ^{
-		self.importHandler(percentage, (itemCount == totalItems));
-	});
+	self.importHandler(percentage, (percentage >= 1.0f));
 }
 
 - (NSManagedObjectContext *)managedObjectContext {

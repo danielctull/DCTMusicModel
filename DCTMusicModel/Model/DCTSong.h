@@ -1,5 +1,6 @@
 #import "_DCTSong.h"
+#import <MediaPlayer/MediaPlayer.h>
 
-@interface DCTSong : _DCTSong {}
-// Custom logic goes here.
+@interface DCTSong : _DCTSong
+- (MPMediaItem *)mediaItem;
 @end

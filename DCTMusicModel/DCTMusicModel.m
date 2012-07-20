@@ -144,6 +144,12 @@ static NSBundle *_bundle = nil;
 			[self _itemsComplete:itemsProcessed totalItems:amountOfItemsToProcess];
 		}];
 		
+		[backgroundContext dct_saveWithCompletionHandler:^(BOOL success, NSError *error) {
+			[mainContext performBlock:^{
+				[mainContext dct_save];
+			}];
+		}];
+		
 		[mediaPlaylists enumerateObjectsUsingBlock:^(MPMediaPlaylist *mediaPlaylist, NSUInteger idx, BOOL *stop) {
 			
 			DCTPlaylist *playlist = [DCTPlaylist insertInManagedObjectContext:backgroundContext];
@@ -156,13 +162,21 @@ static NSBundle *_bundle = nil;
 			
 			itemsProcessed++;
 			[self _itemsComplete:itemsProcessed totalItems:amountOfItemsToProcess];
+			
+			[backgroundContext dct_saveWithCompletionHandler:^(BOOL success, NSError *error) {
+				[mainContext performBlock:^{
+					[mainContext dct_save];
+				}];
+			}];
 		}];
 		
 		[backgroundContext dct_saveWithCompletionHandler:^(BOOL success, NSError *error) {
 			[mainContext performBlock:^{
 				[mainContext dct_saveWithCompletionHandler:^(BOOL success, NSError *error) {
-					NSDictionary *last = @{@"date":[NSDate date]};
-					[last writeToURL:[[self class] _lastUpdatedFileURL] atomically:YES];
+					[@"Blah blah" writeToFile:[[[self class] _lastUpdatedFileURL] path]
+								   atomically:YES
+									 encoding:NSUTF8StringEncoding
+										error:nil];
 					[app endBackgroundTask:backgroundTaskIdentifier];
 					itemsProcessed++;
 					[self _itemsComplete:itemsProcessed totalItems:amountOfItemsToProcess];

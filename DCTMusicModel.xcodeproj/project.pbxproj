@@ -616,6 +616,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = DCTMusicModel;
 				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
 				WRAPPER_EXTENSION = bundle;
 			};
 			name = Debug;
@@ -642,6 +643,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = DCTMusicModel;
 				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
 				WRAPPER_EXTENSION = bundle;
 			};
 			name = Release;
@@ -800,6 +802,7 @@
 				24C0290315B9818F009B1DE9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "DCTMusicModel" */ = {
 			isa = XCConfigurationList;

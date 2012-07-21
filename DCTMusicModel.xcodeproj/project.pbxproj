@@ -17,9 +17,6 @@
 		24700D8515B8579C00FA5843 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 24700D8415B8579C00FA5843 /* main.m */; };
 		24700D8915B8579C00FA5843 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 24700D8815B8579C00FA5843 /* AppDelegate.m */; };
 		24700D8E15B857B000FA5843 /* DCTMusicModel.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 24700CB615B8495000FA5843 /* DCTMusicModel.bundle */; };
-		24700D8F15B857B800FA5843 /* libDCTCoreDataStack.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 24700D0315B84D9700FA5843 /* libDCTCoreDataStack.a */; };
-		24700D9F15B8580100FA5843 /* libDCTTableViewDataSources.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 24700D9A15B857F700FA5843 /* libDCTTableViewDataSources.a */; };
-		24700DA015B8580B00FA5843 /* DCTTableViewDataSources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 24700D9E15B857F700FA5843 /* DCTTableViewDataSources.bundle */; };
 		24C028F915B9818F009B1DE9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		24C0290615B981AC009B1DE9 /* DCTAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = 24700D3D15B853B300FA5843 /* DCTAlbum.m */; };
 		24C0290815B981AC009B1DE9 /* DCTArtist.m in Sources */ = {isa = PBXBuildFile; fileRef = 24700D3F15B853B300FA5843 /* DCTArtist.m */; };
@@ -50,54 +47,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		24700D0215B84D9700FA5843 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 24700CFA15B84D9700FA5843 /* DCTCoreDataStack.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 24F6EBF0158A261000CEDD41;
-			remoteInfo = DCTCoreDataStack;
-		};
-		24700D0415B84D9700FA5843 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 24700CFA15B84D9700FA5843 /* DCTCoreDataStack.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 24F6EC00158A261000CEDD41;
-			remoteInfo = DCTCoreDataStackTests;
-		};
-		24700D9915B857F700FA5843 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 24700D9015B857F700FA5843 /* DCTTableViewDataSources.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 244A6765158B1AB100952890;
-			remoteInfo = DCTTableViewDataSources;
-		};
-		24700D9B15B857F700FA5843 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 24700D9015B857F700FA5843 /* DCTTableViewDataSources.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 244A6775158B1AB100952890;
-			remoteInfo = DCTTableViewDataSourcesTests;
-		};
-		24700D9D15B857F700FA5843 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 24700D9015B857F700FA5843 /* DCTTableViewDataSources.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 24700B3815B835A100FA5843;
-			remoteInfo = DCTTableViewDataSourcesBundle;
-		};
 		24C0293615B981D3009B1DE9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 24700CB515B8495000FA5843;
 			remoteInfo = DCTMusicModelBundle;
-		};
-		24C0293815B981E0009B1DE9 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 24700CFA15B84D9700FA5843 /* DCTCoreDataStack.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 2437B68C15B97C2600750117;
-			remoteInfo = DCTCoreDataStack;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -139,7 +94,6 @@
 		24700CBD15B8495000FA5843 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		24700CBF15B8495000FA5843 /* DCTMusicModelBundle-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DCTMusicModelBundle-Prefix.pch"; sourceTree = "<group>"; };
 		24700CC415B849B500FA5843 /* DCTMusicModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DCTMusicModel.xcdatamodel; sourceTree = "<group>"; };
-		24700CFA15B84D9700FA5843 /* DCTCoreDataStack.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = DCTCoreDataStack.xcodeproj; path = DCTCoreDataStack/DCTCoreDataStack.xcodeproj; sourceTree = "<group>"; };
 		24700D3C15B853B300FA5843 /* DCTAlbum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCTAlbum.h; sourceTree = "<group>"; };
 		24700D3D15B853B300FA5843 /* DCTAlbum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCTAlbum.m; sourceTree = "<group>"; };
 		24700D3E15B853B300FA5843 /* DCTArtist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCTArtist.h; sourceTree = "<group>"; };
@@ -171,7 +125,6 @@
 		24700D8615B8579C00FA5843 /* DCTMusicModelApp-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DCTMusicModelApp-Prefix.pch"; sourceTree = "<group>"; };
 		24700D8715B8579C00FA5843 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		24700D8815B8579C00FA5843 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		24700D9015B857F700FA5843 /* DCTTableViewDataSources.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = DCTTableViewDataSources.xcodeproj; path = DCTTableViewDataSources/DCTTableViewDataSources.xcodeproj; sourceTree = "<group>"; };
 		24C028F815B9818F009B1DE9 /* libDCTMusicModel.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libDCTMusicModel.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		288765A40DF7441C002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		28D801B30F44B63D00FB423F /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -190,8 +143,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				24700D9F15B8580100FA5843 /* libDCTTableViewDataSources.a in Frameworks */,
-				24700D8F15B857B800FA5843 /* libDCTCoreDataStack.a in Frameworks */,
 				24700D7B15B8579C00FA5843 /* UIKit.framework in Frameworks */,
 				24700D7C15B8579C00FA5843 /* Foundation.framework in Frameworks */,
 				24700D7D15B8579C00FA5843 /* CoreGraphics.framework in Frameworks */,
@@ -257,15 +208,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		24700CFB15B84D9700FA5843 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				24700D0315B84D9700FA5843 /* libDCTCoreDataStack.a */,
-				24700D0515B84D9700FA5843 /* DCTCoreDataStackTests.octest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		24700D3B15B853B300FA5843 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -326,16 +268,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		24700D9115B857F700FA5843 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				24700D9A15B857F700FA5843 /* libDCTTableViewDataSources.a */,
-				24700D9C15B857F700FA5843 /* DCTTableViewDataSourcesTests.octest */,
-				24700D9E15B857F700FA5843 /* DCTTableViewDataSources.bundle */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
@@ -344,8 +276,6 @@
 				24700D7E15B8579C00FA5843 /* DCTMusicModelApp */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
-				24700CFA15B84D9700FA5843 /* DCTCoreDataStack.xcodeproj */,
-				24700D9015B857F700FA5843 /* DCTTableViewDataSources.xcodeproj */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -411,7 +341,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				24C0293915B981E0009B1DE9 /* PBXTargetDependency */,
 				24C0293715B981D3009B1DE9 /* PBXTargetDependency */,
 			);
 			name = DCTMusicModel;
@@ -436,16 +365,6 @@
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 24700CFB15B84D9700FA5843 /* Products */;
-					ProjectRef = 24700CFA15B84D9700FA5843 /* DCTCoreDataStack.xcodeproj */;
-				},
-				{
-					ProductGroup = 24700D9115B857F700FA5843 /* Products */;
-					ProjectRef = 24700D9015B857F700FA5843 /* DCTTableViewDataSources.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				24C028F715B9818F009B1DE9 /* DCTMusicModel */,
@@ -454,44 +373,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		24700D0315B84D9700FA5843 /* libDCTCoreDataStack.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libDCTCoreDataStack.a;
-			remoteRef = 24700D0215B84D9700FA5843 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		24700D0515B84D9700FA5843 /* DCTCoreDataStackTests.octest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = DCTCoreDataStackTests.octest;
-			remoteRef = 24700D0415B84D9700FA5843 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		24700D9A15B857F700FA5843 /* libDCTTableViewDataSources.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libDCTTableViewDataSources.a;
-			remoteRef = 24700D9915B857F700FA5843 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		24700D9C15B857F700FA5843 /* DCTTableViewDataSourcesTests.octest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = DCTTableViewDataSourcesTests.octest;
-			remoteRef = 24700D9B15B857F700FA5843 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		24700D9E15B857F700FA5843 /* DCTTableViewDataSources.bundle */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = DCTTableViewDataSources.bundle;
-			remoteRef = 24700D9D15B857F700FA5843 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		24700CB415B8495000FA5843 /* Resources */ = {
@@ -507,7 +388,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				24700D8315B8579C00FA5843 /* InfoPlist.strings in Resources */,
-				24700DA015B8580B00FA5843 /* DCTTableViewDataSources.bundle in Resources */,
 				24700D8E15B857B000FA5843 /* DCTMusicModel.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -559,11 +439,6 @@
 			isa = PBXTargetDependency;
 			target = 24700CB515B8495000FA5843 /* DCTMusicModelBundle */;
 			targetProxy = 24C0293615B981D3009B1DE9 /* PBXContainerItemProxy */;
-		};
-		24C0293915B981E0009B1DE9 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = DCTCoreDataStack;
-			targetProxy = 24C0293815B981E0009B1DE9 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

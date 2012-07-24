@@ -35,11 +35,11 @@ static NSBundle *_bundle = nil;
 		NSDate *storeDate = [attributes objectForKey:NSFileCreationDate];
 		NSDate *libraryLastModified = [[MPMediaLibrary defaultMediaLibrary] lastModifiedDate];
 	
-		if ([libraryLastModified compare:storeDate] == NSOrderedDescending) {
-			[fileManager removeItemAtURL:storeURL error:nil];
+		if ([libraryLastModified compare:storeDate] == NSOrderedDescending)
 			needsUpdating = YES;
-		}
 	}
+	
+	if (needsUpdating) [fileManager removeItemAtURL:storeURL error:nil];
 	
 	_coreDataStack = [[DCTCoreDataStack alloc] initWithStoreURL:storeURL
 													  storeType:NSSQLiteStoreType
@@ -47,9 +47,8 @@ static NSBundle *_bundle = nil;
 											 modelConfiguration:nil
 													   modelURL:modelURL];
 	
-	backgroundContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
-	backgroundContext.parentContext = _coreDataStack.managedObjectContext;
-	
+	backgroundContext = [_coreDataStack newWorkerManagedObjectContext];
+		
 	if (needsUpdating) [self _import];
 	
 	return self;
@@ -63,7 +62,6 @@ static NSBundle *_bundle = nil;
 	UIApplication *app = [UIApplication sharedApplication];
 	UIBackgroundTaskIdentifier backgroundTaskIdentifier = [app beginBackgroundTaskWithExpirationHandler:NULL];
 	
-	NSManagedObjectContext *mainContext = self.managedObjectContext;
 	[backgroundContext performBlock:^{
 		
 		MPMediaQuery *mediaQuery = [MPMediaQuery new];
@@ -136,12 +134,9 @@ static NSBundle *_bundle = nil;
 			[songsDictionary setObject:song forKey:song.identifier];
 			
 			if (index % 500 != 0) return;
-			
+					
 			[backgroundContext dct_saveWithCompletionHandler:^(BOOL success, NSError *error) {
-				[mainContext performBlock:^{
-					[self _percentComplete:0.5f*index/count];
-					[mainContext dct_save];
-				}];
+				[self _percentComplete:0.5f*index/count];
 			}];
 		}];
 				
@@ -160,25 +155,18 @@ static NSBundle *_bundle = nil;
 			}];
 			
 			[backgroundContext dct_saveWithCompletionHandler:^(BOOL success, NSError *error) {
-				[mainContext performBlock:^{
-					[self _percentComplete:0.5f+(index/count)];
-					[mainContext dct_save];
-				}];
+				[self _percentComplete:0.5f+(0.5f*index/count)];
 			}];
 		}];
 		
 		[backgroundContext dct_saveWithCompletionHandler:^(BOOL success, NSError *error) {
-			[mainContext performBlock:^{
-				[mainContext dct_saveWithCompletionHandler:^(BOOL success, NSError *error) {
-					[@"Blah blah" writeToFile:[[[self class] _lastUpdatedFileURL] path]
-								   atomically:YES
-									 encoding:NSUTF8StringEncoding
-										error:nil];
-					[app endBackgroundTask:backgroundTaskIdentifier];
-					[self _percentComplete:1.0f];
-					_importing = NO;
-				}];
-			}];
+			[@"Blah blah" writeToFile:[[[self class] _lastUpdatedFileURL] path]
+						   atomically:YES
+							 encoding:NSUTF8StringEncoding
+								error:nil];
+			[app endBackgroundTask:backgroundTaskIdentifier];
+			[self _percentComplete:1.0f];
+			_importing = NO;
 		}];
 	}];
 }
@@ -187,7 +175,9 @@ static NSBundle *_bundle = nil;
 	
 	if (self.importHandler == NULL) return;
 	
-	self.importHandler(percentage, (percentage >= 1.0f));
+	dispatch_async(dispatch_get_main_queue(), ^{
+		self.importHandler(percentage, (percentage >= 1.0f));
+	});
 }
 
 - (NSManagedObjectContext *)managedObjectContext {

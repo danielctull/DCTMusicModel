@@ -64,8 +64,10 @@ static NSBundle *_bundle = nil;
 	
 	[backgroundContext performBlock:^{
 		
-		MPMediaQuery *mediaQuery = [MPMediaQuery new];
-		NSArray *items = mediaQuery.items;
+		MPMediaPropertyPredicate *predicate = [MPMediaPropertyPredicate predicateWithValue:[NSNumber numberWithInteger:MPMediaTypeAnyAudio] forProperty:MPMediaItemPropertyMediaType];
+		MPMediaQuery *query = [MPMediaQuery new];
+		[query addFilterPredicate:predicate];
+		NSArray *items = [query items];
 		CGFloat count = (CGFloat)[items count];
 		
 		NSMutableDictionary *artistsDictionary = [NSMutableDictionary new];
